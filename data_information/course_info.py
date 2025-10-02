@@ -109,9 +109,9 @@ def course_info(): # menu input course_info
 def add_course_info():
     with open(r"data_information\course_info.txt","w") as fin:
         # institutional =  input("กรุณากรอกชื่อสถานบัน")
+        # faculty = input("กรุณากรอกชื่อคณะ")
         # c_name = input("กรุณากรอกหลักสูตร : ")
         # eng_c_name = input("กรุณากรอกชื่อหลักสูตรภาษาอังกฤษ : ")
-        # faculty = input("กรุณากรอกชื่อคณะ")
         # c_type = input("กรุณากรอกประเภทหลักสูตร : ")
         # campus = input("กรุณากรอกวิทยาเขต : ")
         # expenses = input("กรุณากรอกค่าใช้จ่ายต่อภาคเรียน : ")

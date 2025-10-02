@@ -19,7 +19,7 @@ def menu_main(): # report main menu
 
 def data_course_info(): # เก็บข้อมูลจากไฟล์
     data = []
-    with open(r"Tcas\test\course_info.txt","r") as fout:
+    with open(r"data_information\course_info.txt","r") as fout:
         for i in fout: 
             data.append(i.strip("\n").split("|"))
     return(data)
@@ -37,7 +37,7 @@ def course_info(): # menu input course_info
             back_to_main()
 
 def add_course_info():
-    with open(r"Tcas\test\course_info.txt","w") as fin:
+    with open(r"data_information\course_info.txt","w") as fin:
         # institutional =  input("กรุณากรอกชื่อสถานบัน")
         # c_name = input("กรุณากรอกหลักสูตร : ")
         # eng_c_name = input("กรุณากรอกชื่อหลักสูตรภาษาอังกฤษ : ")
@@ -101,7 +101,7 @@ def all_course_info():
     line = "-" * len(head)
     # title = ["สถานบัน","คณะ","หลักสูตร","ชื่อหลักสูตรภาษาอังกฤษ","ประเภทหลักสูตร","วิทยาเขต","ค่าใช้จ่ายต่อภาคเรียน","อัตราการได้งานทำ","มัธยฐานเงินเดือน"]
     title = ["Institution","Faculty","Program","Program Name in English","Program Type","Campus","Tuition Fee per Semester","Employment Rate","Median Salary"]
-    result += (f"{line}\n{head}\n{line}")
+    result += (f"{line}\n{head}\n{line}\n")
     for course in datas:
         for i in range(len(course)):
             col_data = pad_text(course[i], 90 - 29)  # ลบ len tile กับช่องว่างก่อน col_data
@@ -120,13 +120,13 @@ def main():
     # course_info()
     # report_course_info()
 
-    # add_course_info()
+    add_course_info()
     # data_course_info()
 
     # while True:
     #     menu_main()
 
-    search_course_info()
-    # all_course_info()
+    # search_course_info()
+    all_course_info()
 if __name__ == "__main__":
     main()

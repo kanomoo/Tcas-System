@@ -19,7 +19,7 @@ def menu_main(): # report main menu
 
 def data_course_info(): # เก็บข้อมูลจากไฟล์
     data = []
-    with open(r"data_information\course_info.txt","r") as fout:
+    with open(r"data_information/course_info.txt","r") as fout:
         for i in fout: 
             data.append(i.strip("\n").split("|"))
     return(sorted(data))
@@ -214,7 +214,7 @@ def main():
     # search_course_info()
     # all_course_info()
 
-    # data_dic()
-    create_nested_dict()
+    data_dic()
+    # create_nested_dict()
 if __name__ == "__main__":
     main()

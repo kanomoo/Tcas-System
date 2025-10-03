@@ -19,7 +19,7 @@ def menu_main(): # report main menu
 
 def data_course_info(): # เก็บข้อมูลจากไฟล์
     data = []
-    with open(r"data_information/course_info.txt","r") as fout:
+    with open(r"data_information/course_info.txt","r",encoding="utf-8") as fout:
         for i in fout: 
             data.append(i.strip("\n").split("|"))
     return(sorted(data))
@@ -107,7 +107,7 @@ def course_info(): # menu input course_info
             back_to_main()
 
 def add_course_info():
-    with open(r"data_information\course_info.txt","w") as fin:
+    with open(r"data_information/course_info.txt","w",encoding="utf-8") as fin:
         # institutional =  input("กรุณากรอกชื่อสถานบัน")
         # faculty = input("กรุณากรอกชื่อคณะ")
         # c_name = input("กรุณากรอกหลักสูตร : ")

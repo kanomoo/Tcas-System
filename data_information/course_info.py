@@ -107,6 +107,19 @@ def search_institute(number):
             search_inst[n_f] = key_inst
     if number in search_inst: return(search_inst[number])
 
+def search_faculty(number):
+    data = data_dic_info()
+    for key,institution in data.items():
+        n = 0
+        search_fac = {}
+        for key_inst,faculty in institution.items():
+            for key_fac,program in faculty.items():
+                n += 1
+                n_f = format(n,"0>2")
+                # สร้าง key ตาม number format n_f จะเป็น key automatic
+            search_fac[n_f] = key_fac
+    if number in search_fac: return(search_fac[number])
+
 def course_info(): # menu input course_info
     head = f"|{"Course information":^30}|"
     line = f"+{"-" * (len(head) - 2)}+"
@@ -200,23 +213,44 @@ def search_course_info():
     line = "-" * len(head)
     result += f"{line}\n{head}\n{line}"
     print(result)
-    #ค้นหาข้อมูลผ่าน data dic ต้องใช้ items ช่วย ที่ใช้คือ value
-    # for key,institution in data.items():
-    #     n = 0
-    #     for key_inst,faculty in institution.items():
-    #         n += 1
-    #         col_key_inst = pad_text(key_inst,len(head)-9)
-    #         print(f"| {n:0>2} | {col_key_inst} |")
-    #     print(line)
-    #     choice = input("selcet : ")
-    #     print(search_institute(choice))
-    
+    # ค้นหาข้อมูลผ่าน data dic ต้องใช้ items ช่วย ที่ใช้คือ value
     for key,institution in data.items():
         n = 0
-        for key_fac,faculty in institution[search_institute("01")].items():
+        for key_inst,faculty in institution.items():
+            n += 1
+            col_key_inst = pad_text(key_inst,len(head)-9)
+            print(f"| {n:0>2} | {col_key_inst} |")
+        print(line)
+        choice = input("selcet : ")
+        # choice = "01"
+
+    result = ""
+    head = f"|{'Search Course Information':^50}|"
+    inst = search_institute(choice)
+    col_inst = pad_text(search_institute(choice),len(head)-2)
+    result += f"{line}\n{head}\n{line}\n|{col_inst}|\n{line}"
+    print(result)
+    for key,institution in data.items():
+        n = 0
+        for key_fac,faculty in institution[search_institute(choice)].items():
             n += 1
             col_key_fac = pad_text(key_fac,len(head)-9)
             print(f"| {n:0>2} | {col_key_fac} |")
+        print(line)
+        choice = input("selcet : ")
+        # # choice = "01"
+        # print(search_faculty(inst,choice))
+
+
+    result = ""
+    head = f"|{'Search Course Information':^50}|"
+    fac = pad_text(search_faculty(choice),len(head)-2)
+    result += f"{line}\n{head}\n{line}\n|{inst}|\n{line}"
+    print(result)
+    for key,institution in data.items():
+        n = 0
+        for key_fac,faculty in institution[inst][(search_faculty(choice))].items():
+            print(key_fac)
 
     
     
@@ -235,9 +269,13 @@ def main():
     #     menu_main()
 
     search_course_info()
+
     # all_course_info()
 
     # data_dic()
     # data_dic_info()
+
+
+
 if __name__ == "__main__":
     main()

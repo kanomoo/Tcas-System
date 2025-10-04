@@ -93,6 +93,7 @@ def data_dic_info(): # test chat
     # print()
 
     # print(data_dic["institution"]["จุฬาลงกรณ์มหาวิทยาลัย"]["คณะวิทยาศาสตร์"]["วท.บ.เทคโนโลยีสารสนเทศ"]["Program Name in English"])
+
     # # print (data_dic["institution"]["จุฬาลงกรณ์มหาวิทยาลัย"])
 
 def search_institute(number):
@@ -112,14 +113,15 @@ def search_faculty(inst,number):
     for key,institution in data.items():
         n = 0
         search_fac = {}
-        for key_inst,faculty in institution.items():
-            for key_fac,program in faculty.items():
-                n += 1
-                n_f = format(n,"0>2")
-                # สร้าง key ตาม number format n_f จะเป็น key automatic
-                print(n_f,key_fac)
-            search_fac[n_f] = key_fac
+        for key_fac,faculty in institution[inst].items():
+            n += 1
+            n_f = format(n,"0>2")
+            # สร้าง key ตาม number format n_f จะเป็น key automatic
+            print(n_f,key_fac)
+        search_fac[n_f] = key_fac
     if number in search_fac: return(search_fac[number])
+
+
 
 def course_info(): # menu input course_info
     head = f"|{"Course information":^30}|"

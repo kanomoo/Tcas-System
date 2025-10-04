@@ -104,8 +104,7 @@ def search_institute():
     result = ""
     head = f"|{'Search Course Information':^50}|"
     line = "-" * len(head)
-    result += f"{line}\n{head}\n{line}"
-    print(result)
+    result += f"{line}\n{head}\n{line}\n"
     # ค้นหาข้อมูลผ่าน data dic ต้องใช้ items ช่วย ที่ใช้คือ value
     for key,institution in data.items():
         n = 0
@@ -117,9 +116,10 @@ def search_institute():
             # ทำให้เป็นค่าความกว้างจริง
             search_inst[f"{n:0>2}"] = key_inst
             # สร้าง key id และ value ชื่อ
-            print(f"| {n:0>2} | {col_key_inst} |")
-        print(line)
-        choice = input("selcet : ")
+            result += (f"| {n:0>2} | {col_key_inst} |\n")
+        result += line
+    print(result)
+    choice = input("selcet : ")
     if choice in search_inst: return(search_inst[choice])
 
 def search_faculty(inst):

@@ -24,34 +24,34 @@ def data_course_info(): # เก็บข้อมูลจากไฟล์
             data.append(i.strip("\n").split("|"))
     return(sorted(data))
 
-def data_dic():
-    data = data_course_info()
-    # data_dic = {}
-    data_dic = {"Institution": {}}
+# def data_dic():
+#     data = data_course_info()
+#     # data_dic = {}
+#     data_dic = {"institution": {}}
 
-    for course in data:
-        # ต้องตั้งชื่อ key ดีๆ ก่อน
-        # data_dic[course[0]] = {course[1]: {course[2]}}
+#     for course in data:
+#         # ต้องตั้งชื่อ key ดีๆ ก่อน
+#         # data_dic[course[0]] = {course[1]: {course[2]}}
 
-        data_dic["Institution"][course[0]] = {"คณะ": course[1]}
+#         data_dic["institution"][course[0]] = {"คณะ": course[1]}
         
 
-        # for course in data:
-        #     institution = course[0]
-        #     data_dic["Institution"][institution] = {
-        #         "คณะ": course[1],
-        #         "สาขา": course[2],
-        #         "โปรแกรม": course[3],
-        #         # เพิ่ม key: value ตามข้อมูลที่มี
-        #     }
+#         # for course in data:
+#         #     institution = course[0]
+#         #     data_dic["institution"][institution] = {
+#         #         "คณะ": course[1],
+#         #         "สาขา": course[2],
+#         #         "โปรแกรม": course[3],
+#         #         # เพิ่ม key: value ตามข้อมูลที่มี
+#         #     }
 
 
-    print(data_dic)
+#     print(data_dic)
 
 
-def create_nested_dict(): # test chat 
+def data_dic_info(): # test chat 
     data = data_course_info()
-    data_dic = {"Institution": {}}
+    data_dic = {"institution": {}}
     for course in data:
         institution = course[0]
         faculty = course[1]
@@ -63,14 +63,14 @@ def create_nested_dict(): # test chat
         employment = course[7]
         median_salary = course[8]
         
-        if institution not in data_dic["Institution"]:
-            data_dic["Institution"][institution] = {}
-        if faculty not in data_dic["Institution"][institution]:
-            data_dic["Institution"][institution][faculty] = {}
-        if program not in data_dic["Institution"][institution][faculty]:
-            data_dic["Institution"][institution][faculty][program] = {}
+        if institution not in data_dic["institution"]:
+            data_dic["institution"][institution] = {}
+        if faculty not in data_dic["institution"][institution]:
+            data_dic["institution"][institution][faculty] = {}
+        if program not in data_dic["institution"][institution][faculty]:
+            data_dic["institution"][institution][faculty][program] = {}
 
-        data_dic["Institution"][institution][faculty][program] = {
+        data_dic["institution"][institution][faculty][program] = {
             "Program Name in English": program_name_en,
             "Program Type": program_type,
             "Campus": campus,
@@ -79,20 +79,33 @@ def create_nested_dict(): # test chat
             "Median Salary": median_salary
         }
 
-        
-    # print (data_dic)
-    for i in data_dic["Institution"]["จุฬาลงกรณ์มหาวิทยาลัย"]:
-        print(i)
+    return data_dic
 
-    print()
+    # # print (data_dic)
+    # for i in data_dic["institution"]["จุฬาลงกรณ์มหาวิทยาลัย"]:
+    #     print(i)
 
-    for i in data_dic["Institution"]["จุฬาลงกรณ์มหาวิทยาลัย"]["คณะวิทยาศาสตร์"]["วท.บ.เทคโนโลยีสารสนเทศ"]:
-        print(i)
+    # print()
 
-    print()
+    # for i in data_dic["institution"]["จุฬาลงกรณ์มหาวิทยาลัย"]["คณะวิทยาศาสตร์"]["วท.บ.เทคโนโลยีสารสนเทศ"]:
+    #     print(i)
 
-    print(data_dic["Institution"]["จุฬาลงกรณ์มหาวิทยาลัย"]["คณะวิทยาศาสตร์"]["วท.บ.เทคโนโลยีสารสนเทศ"]["Program Name in English"])
-    # print (data_dic["Institution"]["จุฬาลงกรณ์มหาวิทยาลัย"])
+    # print()
+
+    # print(data_dic["institution"]["จุฬาลงกรณ์มหาวิทยาลัย"]["คณะวิทยาศาสตร์"]["วท.บ.เทคโนโลยีสารสนเทศ"]["Program Name in English"])
+    # # print (data_dic["institution"]["จุฬาลงกรณ์มหาวิทยาลัย"])
+
+def search_institute(number):
+    data = data_dic_info()
+    for key,institution in data.items():
+        n = 0
+        search_inst = {}
+        for key_inst,faculty in institution.items():
+            n += 1
+            n_f = format(n,"0>2")
+            # สร้าง key ตาม number format n_f จะเป็น key automatic
+            search_inst[n_f] = key_inst
+    if number in search_inst: return(search_inst[number])
 
 def course_info(): # menu input course_info
     head = f"|{"Course information":^30}|"
@@ -170,7 +183,7 @@ def all_course_info():
     head = f"|{'Report Course Infomation':^90}|"
     line = "-" * len(head)
     # title = ["สถานบัน","คณะ","หลักสูตร","ชื่อหลักสูตรภาษาอังกฤษ","ประเภทหลักสูตร","วิทยาเขต","ค่าใช้จ่ายต่อภาคเรียน","อัตราการได้งานทำ","มัธยฐานเงินเดือน"]
-    title = ["Institution","Faculty","Program","Program Name in English","Program Type","Campus","Tuition Fee per Semester","Employment Rate","Median Salary"]
+    title = ["institution","Faculty","Program","Program Name in English","Program Type","Campus","Tuition Fee per Semester","Employment Rate","Median Salary"]
     result += (f"{line}\n{head}\n{line}\n")
     for course in datas:
         for i in range(len(course)):
@@ -180,23 +193,33 @@ def all_course_info():
     print(result)
 
 def search_course_info():
-    # ต้องเอา data เป็น dic แล้วใส่ id
-    data = data_course_info()
+    # ใช้ data ที่ เป็น dic
+    data = data_dic_info()
     result = ""
     head = f"|{'Search Course Information':^50}|"
     line = "-" * len(head)
-    result += f"{line}\n{head}\n{line}\n"
-    n = 0
-    for course in data:
-        if course[0] not in result:
+    result += f"{line}\n{head}\n{line}"
+    print(result)
+    #ค้นหาข้อมูลผ่าน data dic ต้องใช้ items ช่วย ที่ใช้คือ value
+    # for key,institution in data.items():
+    #     n = 0
+    #     for key_inst,faculty in institution.items():
+    #         n += 1
+    #         col_key_inst = pad_text(key_inst,len(head)-9)
+    #         print(f"| {n:0>2} | {col_key_inst} |")
+    #     print(line)
+    #     choice = input("selcet : ")
+    #     print(search_institute(choice))
+    
+    for key,institution in data.items():
+        n = 0
+        for key_fac,faculty in institution[search_institute("01")].items():
             n += 1
-            col_course = pad_text(course[0],len(head) - 8)
-            result += f"| {n:0>2} | {col_course}|\n"
-    print(result+line)
-    choice = input("Search : ")
-    for course in data:
-        # check_course = 
-        pass
+            col_key_fac = pad_text(key_fac,len(head)-9)
+            print(f"| {n:0>2} | {col_key_fac} |")
+
+    
+    
 
 def back_to_main():
     menu_main()
@@ -211,10 +234,10 @@ def main():
     # while True:
     #     menu_main()
 
-    # search_course_info()
+    search_course_info()
     # all_course_info()
 
-    data_dic()
-    # create_nested_dict()
+    # data_dic()
+    # data_dic_info()
 if __name__ == "__main__":
     main()

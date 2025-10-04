@@ -1,9 +1,11 @@
 from wcwidth import wcswidth
 # คำนวณความกว้างของการแสดงผล
 
-def pad_text(text, width): # padding text เติมช่องว่าง ควรใช้เฉพาะภาษาไทย
+def pad_text(text, width = 0): # padding text เติมช่องว่าง ควรใช้เฉพาะภาษาไทย
     real_width = wcswidth(text)                         # คำนวณความกว้างจริงของข้อความในเทอมินอล (นับช่องว่างที่ข้อความใช้)
-    if real_width < width:                              # ถ้าความกว้างจริงของข้อความน้อยกว่าความกว้างที่ต้องการ
+    if width == 0:
+        return text 
+    elif real_width < width:                              # ถ้าความกว้างจริงของข้อความน้อยกว่าความกว้างที่ต้องการ
         return text + " " * (width - real_width)        # เติมช่องว่างให้ครบตามความกว้างที่กำหนด เพื่อจัดข้อความให้อยู่ในตำแหน่ง len จริงๆ
     return text                                         # ถ้าความกว้างของข้อความมากกว่าหรือเท่ากับที่ต้องการ return เหมือนเดิม ใช้ format string จัดการต่อเอา
 
@@ -96,30 +98,49 @@ def data_dic_info(): # test chat
 
     # # print (data_dic["institution"]["จุฬาลงกรณ์มหาวิทยาลัย"])
 
-def search_institute(number):
+def search_institute():
+     # ใช้ data ที่ เป็น dic
     data = data_dic_info()
+    result = ""
+    head = f"|{'Search Course Information':^50}|"
+    line = "-" * len(head)
+    result += f"{line}\n{head}\n{line}"
+    print(result)
+    # ค้นหาข้อมูลผ่าน data dic ต้องใช้ items ช่วย ที่ใช้คือ value
     for key,institution in data.items():
         n = 0
         search_inst = {}
         for key_inst,faculty in institution.items():
             n += 1
-            n_f = format(n,"0>2")
-            # สร้าง key ตาม number format n_f จะเป็น key automatic
-            search_inst[n_f] = key_inst
-    if number in search_inst: return(search_inst[number])
+            # แปลงเป็น string เติม 0 ด้านหน้า id จะกรอกง่าย
+            col_key_inst = pad_text(key_inst,len(head)-9)
+            # ทำให้เป็นค่าความกว้างจริง
+            search_inst[f"{n:0>2}"] = key_inst
+            # สร้าง key id และ value ชื่อ
+            print(f"| {n:0>2} | {col_key_inst} |")
+        print(line)
+        choice = input("selcet : ")
+    if choice in search_inst: return(search_inst[choice])
 
-def search_faculty(inst,number):
+def search_faculty(inst):
     data = data_dic_info()
+    result = ""
+    head = f"|{'Faculty':^50}|"
+    line = "-" * len(head)
+    result += f"{line}\n{head}\n{line}"
+    print(result)
     for key,institution in data.items():
         n = 0
         search_fac = {}
         for key_fac,faculty in institution[inst].items():
             n += 1
-            n_f = format(n,"0>2")
+            col_key_fac = pad_text(key_fac,len(head)-9)
+            search_fac[f"{n:0>2}"] = key_fac
             # สร้าง key ตาม number format n_f จะเป็น key automatic
-            print(n_f,key_fac)
-        search_fac[n_f] = key_fac
-    if number in search_fac: return(search_fac[number])
+            print(f"| {n:0>2} | {col_key_fac} |")
+        print(line)        
+        choice = input("selcet : ")
+    if choice in search_fac: return(search_fac[choice])
 
 
 
@@ -209,55 +230,9 @@ def all_course_info():
     print(result)
 
 def search_course_info():
-    # ใช้ data ที่ เป็น dic
-    data = data_dic_info()
-    result = ""
-    head = f"|{'Search Course Information':^50}|"
-    line = "-" * len(head)
-    result += f"{line}\n{head}\n{line}"
-    print(result)
-    # ค้นหาข้อมูลผ่าน data dic ต้องใช้ items ช่วย ที่ใช้คือ value
-    for key,institution in data.items():
-        n = 0
-        for key_inst,faculty in institution.items():
-            n += 1
-            col_key_inst = pad_text(key_inst,len(head)-9)
-            print(f"| {n:0>2} | {col_key_inst} |")
-        print(line)
-        choice = input("selcet : ")
-        # choice = "01"
+    inst = search_institute()
+    search_faculty(inst)
 
-    result = ""
-    head = f"|{'Search Course Information':^50}|"
-    inst = search_institute(choice)
-    col_inst = pad_text(search_institute(choice),len(head)-2)
-    result += f"{line}\n{head}\n{line}\n|{col_inst}|\n{line}"
-    print(result)
-    for key,institution in data.items():
-        n = 0
-        for key_fac,faculty in institution[search_institute(choice)].items():
-            n += 1
-            col_key_fac = pad_text(key_fac,len(head)-9)
-            print(f"| {n:0>2} | {col_key_fac} |")
-        print(line)
-        choice = input("selcet : ")
-        # # choice = "01"
-        # print(search_faculty(inst,choice))
-
-
-    result = ""
-    head = f"|{'Search Course Information':^50}|"
-    fac = search_faculty(inst,choice)
-    col_fac = pad_text(fac,len(head)-2)
-    result += f"{line}\n{head}\n{line}\n|{inst}|\n|{fac}|\n{line}"
-    print(result)
-    for key,institution in data.items():
-        n = 0
-        for key_program,program in institution[inst][fac].items():
-            n += 1          
-            col_key_program = pad_text(key_program,len(head)-9)
-            print(f"| {n:0>2} | {col_key_program} |")
-        print(line)
 
 
 

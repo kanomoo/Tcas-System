@@ -107,7 +107,7 @@ def search_institute(number):
             search_inst[n_f] = key_inst
     if number in search_inst: return(search_inst[number])
 
-def search_faculty(number):
+def search_faculty(inst,number):
     data = data_dic_info()
     for key,institution in data.items():
         n = 0
@@ -117,6 +117,7 @@ def search_faculty(number):
                 n += 1
                 n_f = format(n,"0>2")
                 # สร้าง key ตาม number format n_f จะเป็น key automatic
+                print(n_f,key_fac)
             search_fac[n_f] = key_fac
     if number in search_fac: return(search_fac[number])
 
@@ -244,13 +245,19 @@ def search_course_info():
 
     result = ""
     head = f"|{'Search Course Information':^50}|"
-    fac = pad_text(search_faculty(choice),len(head)-2)
-    result += f"{line}\n{head}\n{line}\n|{inst}|\n{line}"
+    fac = search_faculty(inst,choice)
+    col_fac = pad_text(fac,len(head)-2)
+    result += f"{line}\n{head}\n{line}\n|{inst}|\n|{fac}|\n{line}"
     print(result)
     for key,institution in data.items():
         n = 0
-        for key_fac,faculty in institution[inst][(search_faculty(choice))].items():
-            print(key_fac)
+        for key_program,program in institution[inst][fac].items():
+            n += 1          
+            col_key_program = pad_text(key_program,len(head)-9)
+            print(f"| {n:0>2} | {col_key_program} |")
+        print(line)
+
+
 
     
     

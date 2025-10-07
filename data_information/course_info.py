@@ -1,9 +1,11 @@
 from wcwidth import wcswidth
 # คำนวณความกว้างของการแสดงผล
 
-def pad_text(text, width): # padding text เติมช่องว่าง ควรใช้เฉพาะภาษาไทย
+def pad_text(text, width = 0): # padding text เติมช่องว่าง ควรใช้เฉพาะภาษาไทย
     real_width = wcswidth(text)                         # คำนวณความกว้างจริงของข้อความในเทอมินอล (นับช่องว่างที่ข้อความใช้)
-    if real_width < width:                              # ถ้าความกว้างจริงของข้อความน้อยกว่าความกว้างที่ต้องการ
+    if width == 0:
+        return text 
+    elif real_width < width:                              # ถ้าความกว้างจริงของข้อความน้อยกว่าความกว้างที่ต้องการ
         return text + " " * (width - real_width)        # เติมช่องว่างให้ครบตามความกว้างที่กำหนด เพื่อจัดข้อความให้อยู่ในตำแหน่ง len จริงๆ
     return text                                         # ถ้าความกว้างของข้อความมากกว่าหรือเท่ากับที่ต้องการ return เหมือนเดิม ใช้ format string จัดการต่อเอา
 
@@ -19,39 +21,39 @@ def menu_main(): # report main menu
 
 def data_course_info(): # เก็บข้อมูลจากไฟล์
     data = []
-    with open(r"data_information/course_info.txt","r") as fout:
+    with open(r"data_information/course_info.txt","r",encoding="utf-8") as fout:
         for i in fout: 
             data.append(i.strip("\n").split("|"))
     return(sorted(data))
 
-def data_dic():
-    data = data_course_info()
-    # data_dic = {}
-    data_dic = {"Institution": {}}
+# def data_dic():
+#     data = data_course_info()
+#     # data_dic = {}
+#     data_dic = {"institution": {}}
 
-    for course in data:
-        # ต้องตั้งชื่อ key ดีๆ ก่อน
-        # data_dic[course[0]] = {course[1]: {course[2]}}
+#     for course in data:
+#         # ต้องตั้งชื่อ key ดีๆ ก่อน
+#         # data_dic[course[0]] = {course[1]: {course[2]}}
 
-        data_dic["Institution"][course[0]] = {"คณะ": course[1]}
+#         data_dic["institution"][course[0]] = {"คณะ": course[1]}
         
 
-        # for course in data:
-        #     institution = course[0]
-        #     data_dic["Institution"][institution] = {
-        #         "คณะ": course[1],
-        #         "สาขา": course[2],
-        #         "โปรแกรม": course[3],
-        #         # เพิ่ม key: value ตามข้อมูลที่มี
-        #     }
+#         # for course in data:
+#         #     institution = course[0]
+#         #     data_dic["institution"][institution] = {
+#         #         "คณะ": course[1],
+#         #         "สาขา": course[2],
+#         #         "โปรแกรม": course[3],
+#         #         # เพิ่ม key: value ตามข้อมูลที่มี
+#         #     }
 
 
-    print(data_dic)
+#     print(data_dic)
 
 
-def create_nested_dict(): # test chat 
+def data_dic_info(): # test chat 
     data = data_course_info()
-    data_dic = {"Institution": {}}
+    data_dic = {"institution": {}}
     for course in data:
         institution = course[0]
         faculty = course[1]
@@ -63,14 +65,14 @@ def create_nested_dict(): # test chat
         employment = course[7]
         median_salary = course[8]
         
-        if institution not in data_dic["Institution"]:
-            data_dic["Institution"][institution] = {}
-        if faculty not in data_dic["Institution"][institution]:
-            data_dic["Institution"][institution][faculty] = {}
-        if program not in data_dic["Institution"][institution][faculty]:
-            data_dic["Institution"][institution][faculty][program] = {}
+        if institution not in data_dic["institution"]:
+            data_dic["institution"][institution] = {}
+        if faculty not in data_dic["institution"][institution]:
+            data_dic["institution"][institution][faculty] = {}
+        if program not in data_dic["institution"][institution][faculty]:
+            data_dic["institution"][institution][faculty][program] = {}
 
-        data_dic["Institution"][institution][faculty][program] = {
+        data_dic["institution"][institution][faculty][program] = {
             "Program Name in English": program_name_en,
             "Program Type": program_type,
             "Campus": campus,
@@ -79,20 +81,68 @@ def create_nested_dict(): # test chat
             "Median Salary": median_salary
         }
 
-        
-    # print (data_dic)
-    for i in data_dic["Institution"]["จุฬาลงกรณ์มหาวิทยาลัย"]:
-        print(i)
+    return data_dic
 
-    print()
+    # # print (data_dic)
+    # for i in data_dic["institution"]["จุฬาลงกรณ์มหาวิทยาลัย"]:
+    #     print(i)
 
-    for i in data_dic["Institution"]["จุฬาลงกรณ์มหาวิทยาลัย"]["คณะวิทยาศาสตร์"]["วท.บ.เทคโนโลยีสารสนเทศ"]:
-        print(i)
+    # print()
 
-    print()
+    # for i in data_dic["institution"]["จุฬาลงกรณ์มหาวิทยาลัย"]["คณะวิทยาศาสตร์"]["วท.บ.เทคโนโลยีสารสนเทศ"]:
+    #     print(i)
 
-    print(data_dic["Institution"]["จุฬาลงกรณ์มหาวิทยาลัย"]["คณะวิทยาศาสตร์"]["วท.บ.เทคโนโลยีสารสนเทศ"]["Program Name in English"])
-    # print (data_dic["Institution"]["จุฬาลงกรณ์มหาวิทยาลัย"])
+    # print()
+
+    # print(data_dic["institution"]["จุฬาลงกรณ์มหาวิทยาลัย"]["คณะวิทยาศาสตร์"]["วท.บ.เทคโนโลยีสารสนเทศ"]["Program Name in English"])
+
+    # # print (data_dic["institution"]["จุฬาลงกรณ์มหาวิทยาลัย"])
+
+def search_institute():
+     # ใช้ data ที่ เป็น dic
+    data = data_dic_info()
+    result = ""
+    head = f"|{'Search Course Information':^50}|"
+    line = "-" * len(head)
+    result += f"{line}\n{head}\n{line}\n"
+    # ค้นหาข้อมูลผ่าน data dic ต้องใช้ items ช่วย ที่ใช้คือ value
+    for key,institution in data.items():
+        n = 0
+        search_inst = {}
+        for key_inst,faculty in institution.items():
+            n += 1
+            # แปลงเป็น string เติม 0 ด้านหน้า id จะกรอกง่าย
+            col_key_inst = pad_text(key_inst,len(head)-9)
+            # ทำให้เป็นค่าความกว้างจริง
+            search_inst[f"{n:0>2}"] = key_inst
+            # สร้าง key id และ value ชื่อ
+            result += (f"| {n:0>2} | {col_key_inst} |\n")
+        result += line
+    print(result)
+    choice = input("selcet : ")
+    if choice in search_inst: return(search_inst[choice])
+
+def search_faculty(inst):
+    data = data_dic_info()
+    result = ""
+    head = f"|{'Faculty':^50}|"
+    line = "-" * len(head)
+    result += f"{line}\n{head}\n{line}"
+    print(result)
+    for key,institution in data.items():
+        n = 0
+        search_fac = {}
+        for key_fac,faculty in institution[inst].items():
+            n += 1
+            col_key_fac = pad_text(key_fac,len(head)-9)
+            search_fac[f"{n:0>2}"] = key_fac
+            # สร้าง key ตาม number format n_f จะเป็น key automatic
+            print(f"| {n:0>2} | {col_key_fac} |")
+        print(line)        
+        choice = input("selcet : ")
+    if choice in search_fac: return(search_fac[choice])
+
+
 
 def course_info(): # menu input course_info
     head = f"|{"Course information":^30}|"
@@ -107,7 +157,7 @@ def course_info(): # menu input course_info
             back_to_main()
 
 def add_course_info():
-    with open(r"data_information\course_info.txt","w") as fin:
+    with open(r"data_information/course_info.txt","w",encoding="utf-8") as fin:
         # institutional =  input("กรุณากรอกชื่อสถานบัน")
         # faculty = input("กรุณากรอกชื่อคณะ")
         # c_name = input("กรุณากรอกหลักสูตร : ")
@@ -170,7 +220,7 @@ def all_course_info():
     head = f"|{'Report Course Infomation':^90}|"
     line = "-" * len(head)
     # title = ["สถานบัน","คณะ","หลักสูตร","ชื่อหลักสูตรภาษาอังกฤษ","ประเภทหลักสูตร","วิทยาเขต","ค่าใช้จ่ายต่อภาคเรียน","อัตราการได้งานทำ","มัธยฐานเงินเดือน"]
-    title = ["Institution","Faculty","Program","Program Name in English","Program Type","Campus","Tuition Fee per Semester","Employment Rate","Median Salary"]
+    title = ["institution","Faculty","Program","Program Name in English","Program Type","Campus","Tuition Fee per Semester","Employment Rate","Median Salary"]
     result += (f"{line}\n{head}\n{line}\n")
     for course in datas:
         for i in range(len(course)):
@@ -181,23 +231,14 @@ def all_course_info():
 
 # test
 def search_course_info():
-    # ต้องเอา data เป็น dic แล้วใส่ id
-    data = data_course_info()
-    result = ""
-    head = f"|{'Search Course Information':^50}|"
-    line = "-" * len(head)
-    result += f"{line}\n{head}\n{line}\n"
-    n = 0
-    for course in data:
-        if course[0] not in result:
-            n += 1
-            col_course = pad_text(course[0],len(head) - 8)
-            result += f"| {n:0>2} | {col_course}|\n"
-    print(result+line)
-    choice = input("Search : ")
-    for course in data:
-        # check_course = 
-        pass
+    inst = search_institute()
+    search_faculty(inst)
+
+
+
+
+    
+    
 
 def back_to_main():
     menu_main()
@@ -212,10 +253,14 @@ def main():
     # while True:
     #     menu_main()
 
-    # search_course_info()
+    search_course_info()
+
     # all_course_info()
 
-    data_dic()
-    # create_nested_dict()
+    # data_dic()
+    # data_dic_info()
+
+
+
 if __name__ == "__main__":
     main()

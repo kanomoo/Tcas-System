@@ -179,6 +179,7 @@ def all_course_info():
         result += line+"\n"
     print(result)
 
+# test
 def search_course_info():
     # ต้องเอา data เป็น dic แล้วใส่ id
     data = data_course_info()

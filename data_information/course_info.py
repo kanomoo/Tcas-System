@@ -98,50 +98,6 @@ def data_dic_info(): # test chat
 
     # # print (data_dic["institution"]["จุฬาลงกรณ์มหาวิทยาลัย"])
 
-def search_institute():
-     # ใช้ data ที่ เป็น dic
-    data = data_dic_info()
-    result = ""
-    head = f"|{'Search Course Information':^50}|"
-    line = "-" * len(head)
-    result += f"{line}\n{head}\n{line}\n"
-    # ค้นหาข้อมูลผ่าน data dic ต้องใช้ items ช่วย ที่ใช้คือ value
-    for key,institution in data.items():
-        n = 0
-        search_inst = {}
-        for key_inst,faculty in institution.items():
-            n += 1
-            # แปลงเป็น string เติม 0 ด้านหน้า id จะกรอกง่าย
-            col_key_inst = pad_text(key_inst,len(head)-9)
-            # ทำให้เป็นค่าความกว้างจริง
-            search_inst[f"{n:0>2}"] = key_inst
-            # สร้าง key id และ value ชื่อ
-            result += (f"| {n:0>2} | {col_key_inst} |\n")
-        result += line
-    print(result)
-    choice = input("selcet : ")
-    if choice in search_inst: return(search_inst[choice])
-
-def search_faculty(inst):
-    data = data_dic_info()
-    result = ""
-    head = f"|{'Faculty':^50}|"
-    line = "-" * len(head)
-    result += f"{line}\n{head}\n{line}"
-    print(result)
-    for key,institution in data.items():
-        n = 0
-        search_fac = {}
-        for key_fac,faculty in institution[inst].items():
-            n += 1
-            col_key_fac = pad_text(key_fac,len(head)-9)
-            search_fac[f"{n:0>2}"] = key_fac
-            # สร้าง key ตาม number format n_f จะเป็น key automatic
-            print(f"| {n:0>2} | {col_key_fac} |")
-        print(line)        
-        choice = input("selcet : ")
-    if choice in search_fac: return(search_fac[choice])
-
 
 
 def course_info(): # menu input course_info
@@ -229,10 +185,94 @@ def all_course_info():
         result += line+"\n"
     print(result)
 
+def search_institute():
+     # ใช้ data ที่ เป็น dic
+    data = data_dic_info()
+    result = ""
+    head = f"|{'Search Course Information':^50}|"
+    line = "-" * len(head)
+    result += f"{line}\n{head}\n{line}\n"
+    # ค้นหาข้อมูลผ่าน data dic ต้องใช้ items ช่วย ที่ใช้คือ value
+    for key,institution in data.items():
+        n = 0
+        search_inst = {}
+        for key_inst,faculty in institution.items():
+            n += 1
+            # แปลงเป็น string เติม 0 ด้านหน้า id จะกรอกง่าย
+            col_key_inst = pad_text(key_inst,len(head)-9)
+            # ทำให้เป็นค่าความกว้างจริง
+            search_inst[f"{n:0>2}"] = key_inst
+            # สร้าง key id และ value ชื่อ
+            result += (f"| {n:0>2} | {col_key_inst} |\n")
+        result += line
+    print(result)
+    choice = input("selcet : ")
+    if choice in search_inst: return(search_inst[choice])
+
+def search_faculty(inst):
+    data = data_dic_info()
+    result = ""
+    head = f"|{'Faculty':^50}|"
+    line = "-" * len(head)
+    result += f"{line}\n{head}\n{line}\n"
+    for key,institution in data.items():
+        n = 0
+        search_fac = {}
+        for key_fac,faculty in institution[inst].items():
+            n += 1
+            col_key_fac = pad_text(key_fac,len(head)-9)
+            search_fac[f"{n:0>2}"] = key_fac
+            # สร้าง key ตาม number format n_f จะเป็น key automatic
+            result += (f"| {n:0>2} | {col_key_fac} |\n")
+    print(result,line)        
+    choice = input("selcet : ")
+    if choice in search_fac: return(search_fac[choice])
+
+def search_c_name(inst,fac):
+    data = data_dic_info()
+    result = ""
+    head = f"|{'Couse_Name':^50}|"
+    line = "-" * len(head)
+    result += f"{line}\n{head}\n{line}\n"
+    for key,institution in data.items():
+        n = 0
+        search_c_name = {}
+        for key_c_name, c_name in institution[inst][fac].items():
+            n += 1
+            col_key_c_name = pad_text(key_c_name,len(head)-9)
+            search_c_name[f"{n:0>2}"] = key_c_name
+            # สร้าง key ตาม number format n_f จะเป็น key automatic
+            result += (f"| {n:0>2} | {col_key_c_name} |\n")
+    print(result,line)        
+    choice = input("selcet : ")
+    if choice in search_c_name: return(search_c_name[choice])
+
+def search_c_type(inst,fac,c_name):
+    data = data_dic_info()
+    result = ""
+    head = f"|{'Couse_Type':^50}|"
+    line = "-" * len(head)
+    result += f"{line}\n{head}\n{line}\n"
+    for key,institution in data.items():
+        n = 0
+        search_c_type = {}
+        for key_c_type, c_type in institution[inst][fac][c_name].items():
+            n += 1
+            col_key_c_type = pad_text(key_c_type,len(head)-9)
+            search_c_type[f"{n:0>2}"] = key_c_type
+            # สร้าง key ตาม number format n_f จะเป็น key automatic
+            result += (f"| {n:0>2} | {col_key_c_type} |\n")
+    print(result,line)        
+    choice = input("selcet : ")
+    if choice in search_c_type: return(search_c_type[choice])
+
 # test
 def search_course_info():
-    inst = search_institute()
-    search_faculty(inst)
+    inst = search_institute() 
+    fac = search_faculty(inst)
+    c_name = search_c_name(inst,fac)
+    search_c_type(inst,fac,c_name)
+
 
 
 
@@ -253,9 +293,9 @@ def main():
     # while True:
     #     menu_main()
 
-    search_course_info()
+    # search_course_info()
 
-    # all_course_info()
+    all_course_info()
 
     # data_dic()
     # data_dic_info()

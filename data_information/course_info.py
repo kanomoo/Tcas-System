@@ -1,6 +1,6 @@
 from wcwidth import wcswidth
-# คำนวณความกว้างของการแสดงผล
 
+# คำนวณความกว้างของการแสดงผล
 def pad_text(text, width = 0): # padding text เติมช่องว่าง ควรใช้เฉพาะภาษาไทย
     text = str(text)
     real_width = wcswidth(text)                         # คำนวณความกว้างจริงของข้อความในเทอมินอล (นับช่องว่างที่ข้อความใช้)
@@ -9,57 +9,13 @@ def pad_text(text, width = 0): # padding text เติมช่องว่า�
     elif real_width < width:                            # ถ้าความกว้างจริงของข้อความน้อยกว่าความกว้างที่ต้องการ
         return text + " " * (width - real_width)        # เติมช่องว่างให้ครบตามความกว้างที่กำหนด เพื่อจัดข้อความให้อยู่ในตำแหน่ง len จริงๆ
     return text                                         # ถ้าความกว้างของข้อความมากกว่าหรือเท่ากับที่ต้องการ return เหมือนเดิม ใช้ format string จัดการต่อเอา
-
-def data_studten():
-    data = []
-    with open(r"data_information/student.txt","r",encoding="utf-8") as fout:
-        for i in fout: 
-            data.append(i.strip("\n").split("|"))
-    print(data)
-    return data
-
-def menu_main(): # report main menu
-    head = f"|{"TCAS System":^25}|"
-    line = f"+{"=" * (len(head) - 2)}+"
-    choice = input(f"{line}\n{head}\n{line}\n|{"1. Course information":25}|\n|{"2. Exit Program":25}|\n{line}\nSelect option : ")
-    match choice:
-        case "1":
-            course_info()
-        case "2":
-            exit()
-    print()
-
+    
 def data_course_info(): # เก็บข้อมูลจากไฟล์
     data = []
-    with open(r"data_information/course_info.txt","r",encoding="utf-8") as fout:
+    with open(r"data_information/datas/data_course_info.txt","r",encoding="utf-8") as fout:
         for i in fout: 
             data.append(i.strip("\n").split("|"))
     return(sorted(data))
-
-# def data_dic():
-#     data = data_course_info()
-#     # data_dic = {}
-#     data_dic = {"university": {}}
-
-#     for course in data:
-#         # ต้องตั้งชื่อ key ดีๆ ก่อน
-#         # data_dic[course[0]] = {course[1]: {course[2]}}
-
-#         data_dic["university"][course[0]] = {"คณะ": course[1]}
-        
-
-#         # for course in data:
-#         #     university = course[0]
-#         #     data_dic["university"][university] = {
-#         #         "คณะ": course[1],
-#         #         "สาขา": course[2],
-#         #         "โปรแกรม": course[3],
-#         #         # เพิ่ม key: value ตามข้อมูลที่มี
-#         #     }
-
-
-#     print(data_dic)
-
 
 def data_dic_info(): # test chat 
     data = data_course_info()
@@ -72,43 +28,6 @@ def data_dic_info(): # test chat
         catg_program = course[3]
         campus = course[4]
         expenses  = course[5]
-
-        # r1_tcase = course[6]
-        # r1_cc = course[7]
-        # r1_ic = course[8]
-        # r1_vc = course[9]
-        # r1_nfe = course[10]
-        # r1_ged = course[11]
-        # r1_grade = course[12]
-        
-        # r2_tcase = course[13]
-        # r2_cc = course[14]  
-        # r2_ic = course[15]
-        # r2_vc = course[16]
-        # r2_nfe = course[17]
-        # r2_ged = course[18]
-        # r2_grade = course[19]
-
-        # r3_tcase = course[20]
-        # r3_cc = course[21]
-        # r3_ic = course[22]
-        # r3_vc = course[23]
-        # r3_nfe = course[24]
-        # r3_ged = course[25]
-        # r3_grade = course[26]
-
-        # r4_tcase = course[27]
-        # r4_cc = course[28]
-        # r4_ic = course[29]
-        # r4_vc = course[30]
-        # r4_nfe = course[31]
-        # r4_ged = course[32]
-        # r4_grade = course[33]
-
-
-
-#         employment = course[7]
-#         median_salary = course[8]
         
         if university not in data_dic["university"]:
             data_dic["university"][university] = {}
@@ -116,21 +35,11 @@ def data_dic_info(): # test chat
             data_dic["university"][university][faculty] = {}
         if program not in data_dic["university"][university][faculty]:
             data_dic["university"][university][faculty][program] = {}
-            # data_dic["university"][university][faculty][program] = [program_name_en,program_type,campus,tuition]
-
-        # data_dic["university"][university][faculty][program] = {
-        #     [program_name_en,program_type,campus,tuition]
-        # }
 
         data_dic["university"][university][faculty][program] = {
             "Category of Program": catg_program,
             "Campus": campus,
             "Expenses": expenses,
-            # "TCAS 1": [r1_tcase,r1_cc,r1_ic,r1_vc,r1_nfe,r1_ged,r1_grade],
-            # "TCAS 2": [r2_tcase,r2_cc,r2_ic,r2_vc,r2_nfe,r2_ged,r2_grade],
-            # "TCAS 3": [r3_tcase,r3_cc,r3_ic,r3_vc,r3_nfe,r3_ged,r3_grade],
-            # "TCAS 4": [r4_tcase,r4_cc,r4_ic,r4_vc,r4_nfe,r4_ged,r4_grade],
-
         }
 
     return data_dic
@@ -170,7 +79,7 @@ def course_info(): # menu input course_info
         
 
 def add_course_info():
-    with open(r"data_information/course_info.txt","w",encoding="utf-8") as fin:
+    with open(r"data_information/datas/data_course_info.txt","w",encoding="utf-8") as fin:
         # universityal =  input("กรุณากรอกชื่อสถานบัน : ")
         # faculty = input("กรุณากรอกชื่อคณะ : ")
         # program = input("กรุณากรอกหลักสูตร : ")
@@ -208,33 +117,6 @@ def add_course_info():
             result += (f"| {title[i]:25} | {pad_text(datas[i],68)} |\n")
         result += line 
 
-        # head2 = f"\n|{'TCAS Rounds':^98}|"
-        # title2 = f"| {"Rouds":^25} |{"Central":^13}| International |{"Vocational":13}|{"Non-Formal":13}|{"GED":^12}|"
-        # line2 = "-" * (len(head2)- 1)
-        # result += f"{head2}\n{line2}\n{title2}\n{line2}\n"
-        
-        # round_tcas = {"tcas1": "Portfolio","tcas2": "Quota","tcas3": "Admission","tcas4": "Direct Admission"}
-        # tcas_data = []
-        # for tcas, name in round_tcas.items():
-        #     key_tcas = input(f"Apply to {tcas.upper()} {name} (y/n) : ").lower()
-        #     result += f"| {tcas.upper()} | {name:17} |"
-        #     if {key_tcas} == "y":
-        #         cc_qty = input("Enter Quantity of students Central : ")
-        #         ic_qty = input("Enter Quantity of students International : ")
-        #         vc_qty = input("Enter Quauntity of students Vocational : ")
-        #         nfe_qty = input("Enter Quantity of students Non-Formal : ")   
-        #         ged_qty = input("Enter Quantity of students GED : ")
-        #     elif key_tcas == "n":
-        #         cc_qty, ic_qty, vc_qty, nfe_qty, ged_qty = "0", "0", "0", "0", "0"
-        
-        #     result += f"{cc_qty:^13}|"
-        #     result += f"{ic_qty:^15}|"
-        #     result += f"{vc_qty:^13}|"
-        #     result += f"{nfe_qty:^13}|"
-        #     result += f"{ged_qty:^12}|\n"
-
-        # result += line2
-
        
         print(result)
         check = input("Confirm Information (y/n) : ").lower()
@@ -264,8 +146,6 @@ def add_course_info():
         #     course = "|".join(course)
         #     fin.write(course+"\n")
     print()
-
-        
 
 def report_course_info(): # report 
     while True:
@@ -419,42 +299,14 @@ def search_title(univ = "มหาวิทยาลัยเทคโนโล�
             col_title = pad_text(title,68)
             result += (f"| {key_title:25} | {col_title} |\n")
             data_title.append(col_title)
-            # else:
-            #     if key_title == "TCAS 1":
-            #         head2 = f"|{'TCAS Rounds':^98}|"
-            #         title2 = f"| {"Rouds":^25} |{"Central":^10}| International |{"Vocational":10}|{"Non-Formal":10}|{"GED":^10}|{"Grade":^10}|"
-            #         line2 = "-" * len(head2)
-            #         result += f"{line2}\n{head2}\n{line2}\n{title2}\n{line2}\n"
-            #         result += f"| {key_title} |"
-            #         result +=  f" {title[0]:16} |"
-            #         result += f"{title[1]:^10}|"    
-            #         result += f"{title[2]:^15}|"
-            #         result += f"{title[3]:^10}|"
-            #         result += f"{title[4]:^10}|"
-            #         result += f"{title[5]:^10}|"
-            #         result += f"{title[6]:^10}|\n"
-            #         # if key_title[0]: result +=  f"{key_title[0]:16} |"
-            #         # elif key_title[2]: result += f"{key_title[2]:^15}"
-            #         # else: result += f"{key_title:^10}"
-            #     else: 
-            #         result += f"| {key_title} |"
-            #         result +=  f" {title[0]:16} |"
-            #         result += f"{title[1]:^10}|"    
-            #         result += f"{title[2]:^15}|"
-            #         result += f"{title[3]:^10}|"
-            #         result += f"{title[4]:^10}|"
-            #         result += f"{title[5]:^10}|"
-            #         result += f"{title[6]:^10}|\n"
-            #         # result += f"| {key_title} |"
-            #         # if key_title[0]: result +=  f"{key_title[0]:16} |"
-            #         # elif key_title[2]: result += f"{key_title[2]:^15}"
-            #         # else: result += f"{key_title:^10}"
     
 
     print(result+line)        
     choice = input(f"1. register for study\n2. Back to main\nselect : ")
     match choice:
         case "1":
+            # import student function at runtime to avoid circular import
+            from .student import data_studten
             datas = data_studten()
             data1 = []
             # iden_code = input("Enter Identification code : ")
@@ -463,9 +315,6 @@ def search_title(univ = "มหาวิทยาลัยเทคโนโล�
             for data in datas:
                 if iden_code in data:
                     data.extend((univ,fac,program))
-                    
- 
-
             print(data)
 
 
@@ -490,7 +339,7 @@ def search_course_info():
     
 
 def back_to_main():
-    menu_main()
+    pass
 
 def main():
     # course_info()
@@ -510,7 +359,7 @@ def main():
 
     # data_studten()
     # add_course_info()
-    menu_main()
+    pass
 
 if __name__ == "__main__":
     main()

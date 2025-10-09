@@ -73,37 +73,37 @@ def data_dic_info(): # test chat
         campus = course[4]
         expenses  = course[5]
 
-        r1_tcase = course[6]
-        r1_cc = course[7]
-        r1_ic = course[8]
-        r1_vc = course[9]
-        r1_nfe = course[10]
-        r1_ged = course[11]
-        r1_grade = course[12]
+        # r1_tcase = course[6]
+        # r1_cc = course[7]
+        # r1_ic = course[8]
+        # r1_vc = course[9]
+        # r1_nfe = course[10]
+        # r1_ged = course[11]
+        # r1_grade = course[12]
         
-        r2_tcase = course[13]
-        r2_cc = course[14]
-        r2_ic = course[15]
-        r2_vc = course[16]
-        r2_nfe = course[17]
-        r2_ged = course[18]
-        r2_grade = course[19]
+        # r2_tcase = course[13]
+        # r2_cc = course[14]  
+        # r2_ic = course[15]
+        # r2_vc = course[16]
+        # r2_nfe = course[17]
+        # r2_ged = course[18]
+        # r2_grade = course[19]
 
-        r3_tcase = course[20]
-        r3_cc = course[21]
-        r3_ic = course[22]
-        r3_vc = course[23]
-        r3_nfe = course[24]
-        r3_ged = course[25]
-        r3_grade = course[26]
+        # r3_tcase = course[20]
+        # r3_cc = course[21]
+        # r3_ic = course[22]
+        # r3_vc = course[23]
+        # r3_nfe = course[24]
+        # r3_ged = course[25]
+        # r3_grade = course[26]
 
-        r4_tcase = course[27]
-        r4_cc = course[28]
-        r4_ic = course[29]
-        r4_vc = course[30]
-        r4_nfe = course[31]
-        r4_ged = course[32]
-        r4_grade = course[33]
+        # r4_tcase = course[27]
+        # r4_cc = course[28]
+        # r4_ic = course[29]
+        # r4_vc = course[30]
+        # r4_nfe = course[31]
+        # r4_ged = course[32]
+        # r4_grade = course[33]
 
 
 
@@ -126,10 +126,10 @@ def data_dic_info(): # test chat
             "Category of Program": catg_program,
             "Campus": campus,
             "Expenses": expenses,
-            "TCAS 1": [r1_tcase,r1_cc,r1_ic,r1_vc,r1_nfe,r1_ged,r1_grade],
-            "TCAS 2": [r2_tcase,r2_cc,r2_ic,r2_vc,r2_nfe,r2_ged,r2_grade],
-            "TCAS 3": [r3_tcase,r3_cc,r3_ic,r3_vc,r3_nfe,r3_ged,r3_grade],
-            "TCAS 4": [r4_tcase,r4_cc,r4_ic,r4_vc,r4_nfe,r4_ged,r4_grade],
+            # "TCAS 1": [r1_tcase,r1_cc,r1_ic,r1_vc,r1_nfe,r1_ged,r1_grade],
+            # "TCAS 2": [r2_tcase,r2_cc,r2_ic,r2_vc,r2_nfe,r2_ged,r2_grade],
+            # "TCAS 3": [r3_tcase,r3_cc,r3_ic,r3_vc,r3_nfe,r3_ged,r3_grade],
+            # "TCAS 4": [r4_tcase,r4_cc,r4_ic,r4_vc,r4_nfe,r4_ged,r4_grade],
 
         }
 
@@ -182,257 +182,88 @@ def add_course_info():
       
 
         #  ==================== True Use
-        # universityal =  "มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ"
-        # faculty = "คณะเทคโนโลยีและการจัดการอุตสาหกรรม"
-        # program = "วท.บ.เทคโนโลยีสารสนเทศ (ภาษาไทย ปกติ) วิทยาเขต ปราจีนบุรี"
-        # catg_program = "ภาษาไทย ปกติ"
-        # campus = "ปราจีนบุรี"
-        # expenses = "19,000"
+        universityal =  "มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ"
+        faculty = "คณะเทคโนโลยีและการจัดการอุตสาหกรรม"
+        program = "วท.บ.เทคโนโลยีสารสนเทศ (ภาษาไทย ปกติ) วิทยาเขต ปราจีนบุรี"
+        catg_program = "ภาษาไทย ปกติ"
+        campus = "ปราจีนบุรี"
+        expenses = "19,000"
 
 
-        # # ================ test
-        # print(f"Enter University Name : {universityal}")
-        # print(f"Enter Faculty : {faculty}")
-        # print(f"Enter Program : {program}")
-        # print(f"Enter Category of Program : {catg_program}")
-        # print(f"Enter Campus : {campus}")
-        # print(f"Enter Expenses : {expenses}")
-        # # ================
+        # ================ test
+        print(f"Enter University Name : {universityal}")
+        print(f"Enter Faculty : {faculty}")
+        print(f"Enter Program : {program}")
+        print(f"Enter Category of Program : {catg_program}")
+        print(f"Enter Campus : {campus}")
+        print(f"Enter Expenses : {expenses}")
+        # ================
 
-        # head = f"|{'Couse_Information':^98}|"
-        # line = "-" * len(head)
-        # result = f"{line}\n{head}\n{line}\n"
-        # title = ["University","Faculty","Program","Category of Program","Campus","Expenses"]
-        # datas = [universityal,faculty,program,catg_program,campus,expenses]
-        # for i in range(len(title)):
-        #     result += (f"| {title[i]:25} | {pad_text(datas[i],68)} |\n")
-        # result += line 
+        head = f"|{'Couse_Information':^98}|"
+        line = "-" * len(head)
+        result = f"{line}\n{head}\n{line}\n"
+        title = ["University","Faculty","Program","Category of Program","Campus","Expenses"]
+        datas = [universityal,faculty,program,catg_program,campus,expenses]
+        for i in range(len(title)):
+            result += (f"| {title[i]:25} | {pad_text(datas[i],68)} |\n")
+        result += line 
 
         # head2 = f"\n|{'TCAS Rounds':^98}|"
-        # title2 = f"| {"Rouds":^25} |{"Central":^10}| International |{"Vocational":10}|{"Non-Formal":10}|{"GED":^10}|{"Grade":^10}|"
-        # line2 = "-" * len(head2)
+        # title2 = f"| {"Rouds":^25} |{"Central":^13}| International |{"Vocational":13}|{"Non-Formal":13}|{"GED":^12}|"
+        # line2 = "-" * (len(head2)- 1)
         # result += f"{head2}\n{line2}\n{title2}\n{line2}\n"
+        
+        # round_tcas = {"tcas1": "Portfolio","tcas2": "Quota","tcas3": "Admission","tcas4": "Direct Admission"}
+        # tcas_data = []
+        # for tcas, name in round_tcas.items():
+        #     key_tcas = input(f"Apply to {tcas.upper()} {name} (y/n) : ").lower()
+        #     result += f"| {tcas.upper()} | {name:17} |"
+        #     if {key_tcas} == "y":
+        #         cc_qty = input("Enter Quantity of students Central : ")
+        #         ic_qty = input("Enter Quantity of students International : ")
+        #         vc_qty = input("Enter Quauntity of students Vocational : ")
+        #         nfe_qty = input("Enter Quantity of students Non-Formal : ")   
+        #         ged_qty = input("Enter Quantity of students GED : ")
+        #     elif key_tcas == "n":
+        #         cc_qty, ic_qty, vc_qty, nfe_qty, ged_qty = "0", "0", "0", "0", "0"
+        
+        #     result += f"{cc_qty:^13}|"
+        #     result += f"{ic_qty:^15}|"
+        #     result += f"{vc_qty:^13}|"
+        #     result += f"{nfe_qty:^13}|"
+        #     result += f"{ged_qty:^12}|\n"
 
-        # tcas1 = input("Apply to TCAS Round 1 Portfolio (y/n) : ").lower()
-        # result += f"| TCAS 1 | {"Portfolio":16} |"
-        # match tcas1:
-        #     case "y": 
-        #         check_cc = input("Accepted Central Curriculum (y/n) : ").lower()
-        #         # check_cc = "y"
-        #         if check_cc == "y": cc = "Accepted"
-        #         else: cc = "Declined"
-        #         check_ic = input("Accepted International Curriculum (y/n) : ").lower()
-        #         # check_ic = "y"
-        #         if check_ic == "y": ic = "Accepted"
-        #         else: ic = "Declined"
-        #         check_vc = input("Accepted Vocational Curriculum (y/n) : ").lower()
-        #         # check_vc = "y"
-        #         if check_vc == "y": vc += "Accepted"
-        #         else: vc = "Declined"
-        #         check_nfe = input("Accepted Non Formal Education (y/n) : ").lower()
-        #         # check_nfe = "y"
-        #         if check_nfe == "y": nfe = "Accepted"
-        #         else: nfe = "Declined"
-        #         check_ged = input("Accepted GED Curriculum (y/n) : ").lower()
-        #         # check_ged = "y"
-        #         if check_ged == "y": ged += "Accepted"
-        #         else: ged = "Declined"
-        #         while True:
-        #             try:
-        #                 mini_gpa = int(input("Enter minimum required GPA : "))
-        #                 if mini_gpa >= 0 and mini_gpa <= 4: 
-        #                     break
-        #             except ValueError: print("Please Enter a numberic minimum required GPA ")
-        #         result += f"{cc:^10}|{ic:^15}|{vc:^10}|{nfe:^10}|{ged:^10}|{mini_gpa:^10}|\n"
-        #         # d_t1 = (tcas1,check_cc,check_ic,check_vc,check_nfe,check_ged)
-        #         d_t1 = ("Portfolio",cc,ic,vc,nfe,ged,mini_gpa)
-
-        #     case _:
-        #         cc = "Declined"
-        #         ic = "Declined"
-        #         vc = "Declined"
-        #         nfe = "Declined"
-        #         ged = "Declined"
-        #         mini_gpa = "Declined"
-        #         result += f"{cc:^10}|{ic:^15}|{vc:^10}|{nfe:^10}|{ged:^10}|{mini_gpa:^10}|\n"
-        #         d_t1 = ("Portfolio",cc,ic,vc,nfe,ged,mini_gpa)
-
-                
-
-
-        # tcas2 = input("Apply to TCAS Round 2 Quota (y/n) : ").lower()
-        # result += f"| TCAS 2 | {"Quota":16} |"
-        # match tcas2:
-        #     case "y": 
-        #         check_cc = input("Accepted Central Curriculum (y/n) : ").lower()
-        #         # check_cc = "y"
-        #         if check_cc == "y": cc = "Accepted"
-        #         else: cc = "Declined"
-        #         check_ic = input("Accepted International Curriculum (y/n) : ").lower()
-        #         # check_ic = "y"
-        #         if check_ic == "y": ic = "Accepted"
-        #         else: ic = "Declined"
-        #         check_vc = input("Accepted Vocational Curriculum (y/n) : ").lower()
-        #         # check_vc = "y"
-        #         if check_vc == "y": vc += "Accepted"
-        #         else: vc = "Declined"
-        #         check_nfe = input("Accepted Non Formal Education (y/n) : ").lower()
-        #         # check_nfe = "y"
-        #         if check_nfe == "y": nfe = "Accepted"
-        #         else: nfe = "Declined"
-        #         check_ged = input("Accepted GED Curriculum (y/n) : ").lower()
-        #         # check_ged = "y"
-        #         if check_ged == "y": ged += "Accepted"
-        #         else: ged = "Declined"
-        #         while True:
-        #             try:
-        #                 mini_gpa = int(input("Enter minimum requi'red GPA : "))
-        #                 if mini_gpa >= 0 and mini_gpa <= 4: 
-        #                     break
-        #             except ValueError: print("Please Enter a numberic minimum required GPA ")
-        #         result += f"{cc:^10}|{ic:^15}|{vc:^10}|{nfe:^10}|{ged:^10}|{mini_gpa:^10}|\n"
-        #         # d_t2 = (tcas1,check_cc,check_ic,check_vc,check_nfe,check_ged)
-        #         d_t2 = ("Quota",cc,ic,vc,nfe,ged,mini_gpa)
-
-        #     case _:
-        #         cc = "Declined"
-        #         ic = "Declined"
-        #         vc = "Declined"
-        #         nfe = "Declined"
-        #         ged = "Declined"
-        #         mini_gpa = "Declined"
-        #         result += f"{cc:^10}|{ic:^15}|{vc:^10}|{nfe:^10}|{ged:^10}|{mini_gpa:^10}|\n"
-        #         # d_t2 = (tcas2,"n","n","n","n","n")
-        #         d_t2 = ("Quota",cc,ic,vc,nfe,ged,mini_gpa)
-
-
-        # tcas3 = input("Apply to TCAS Round 3 Admission (y/n) : ").lower()
-        # result += f"| TCAS 3 | {"Admission":16} |"
-        # match tcas1:
-        #     case "y": 
-        #         check_cc = input("Accepted Central Curriculum (y/n) : ").lower()
-        #         # check_cc = "y"
-        #         if check_cc == "y": cc = "Accepted"
-        #         else: cc = "Declined"
-        #         check_ic = input("Accepted International Curriculum (y/n) : ").lower()
-        #         # check_ic = "y"
-        #         if check_ic == "y": ic = "Accepted"
-        #         else: ic = "Declined"
-        #         check_vc = input("Accepted Vocational Curriculum (y/n) : ").lower()
-        #         # check_vc = "y"
-        #         if check_vc == "y": vc += "Accepted"
-        #         else: vc = "Declined"
-        #         check_nfe = input("Accepted Non Formal Education (y/n) : ").lower()
-        #         # check_nfe = "y"
-        #         if check_nfe == "y": nfe = "Accepted"
-        #         else: nfe = "Declined"
-        #         check_ged = input("Accepted GED Curriculum (y/n) : ").lower()
-        #         # check_ged = "y"
-        #         if check_ged == "y": ged += "Accepted"
-        #         else: ged = "Declined"
-        #         while True:
-        #             try:
-        #                 mini_gpa = int(input("Enter minimum required GPA : "))
-        #                 if mini_gpa >= 0 and mini_gpa <= 4: 
-        #                     break
-        #             except ValueError: print("Please Enter a numberic minimum required GPA ")
-        #         result += f"{cc:^10}|{ic:^15}|{vc:^10}|{nfe:^10}|{ged:^10}|{mini_gpa:^10}|\n"
-        #         # d_t3 = (tcas1,check_cc,check_ic,check_vc,check_nfe,check_ged)
-        #         d_t3 = ("Admission",cc,ic,vc,nfe,ged,mini_gpa)
-
-        #     case _:
-        #         cc = "Declined"
-        #         ic = "Declined"
-        #         vc = "Declined"
-        #         nfe = "Declined"
-        #         ged = "Declined"
-        #         mini_gpa = "Declined"
-        #         result += f"{cc:^10}|{ic:^15}|{vc:^10}|{nfe:^10}|{ged:^10}|{mini_gpa:^10}|\n"
-        #         # d_t3 = (tcas3,"n","n","n","n","n")
-        #         d_t3 = ("Admission",cc,ic,vc,nfe,ged,mini_gpa)
-
-
-        # tcas4 = input("Apply to TCAS Round 4 Direct Admission (y/n) : ").lower()
-        # result += f"| TCAS 4 | {"Direct Admission":16} |"
-        # match tcas4:
-        #     case "y": 
-        #         check_cc = input("Accepted Central Curriculum (y/n) : ").lower()
-        #         # check_cc = "y"
-        #         if check_cc == "y": cc = "Accepted"
-        #         else: cc = "Declined"
-        #         check_ic = input("Accepted International Curriculum (y/n) : ").lower()
-        #         # check_ic = "y"
-        #         if check_ic == "y": ic = "Accepted"
-        #         else: ic = "Declined"
-        #         check_vc = input("Accepted Vocational Curriculum (y/n) : ").lower()
-        #         # check_vc = "y"
-        #         if check_vc == "y": vc += "Accepted"
-        #         else: vc = "Declined"
-        #         check_nfe = input("Accepted Non Formal Education (y/n) : ").lower()
-        #         # check_nfe = "y"
-        #         if check_nfe == "y": nfe = "Accepted"
-        #         else: nfe = "Declined"
-        #         check_ged = input("Accepted GED Curriculum (y/n) : ").lower()
-        #         # check_ged = "y"
-        #         if check_ged == "y": ged += "Accepted"
-        #         else: ged = "Declined"
-        #         while True:
-        #             try:
-        #                 mini_gpa = int(input("Enter minimum required GPA : "))
-        #                 if mini_gpa >= 0 and mini_gpa <= 4: 
-        #                     break
-        #             except ValueError: print("Please Enter a numberic minimum required GPA ")
-        #         result += f"{cc:^10}|{ic:^15}|{vc:^10}|{nfe:^10}|{ged:^10}|{mini_gpa:^10}|\n"
-        #         # d_t4 = (tcas1,check_cc,check_ic,check_vc,check_nfe,check_ged)
-        #         d_t4 = ("Direct Admission",cc,ic,vc,nfe,ged,mini_gpa)
-
-        #     case _:
-        #         cc = "Declined"
-        #         ic = "Declined"
-        #         vc = "Declined"
-        #         nfe = "Declined"
-        #         ged = "Declined"
-        #         mini_gpa = "Declined"
-        #         result += f"{cc:^10}|{ic:^15}|{vc:^10}|{nfe:^10}|{ged:^10}|{mini_gpa:^10}|\n"
-        #         # d_t4 = (tcas4,"n","n","n","n","n")
-        #         d_t4 = ("Direct Admission",cc,ic,vc,nfe,ged,mini_gpa)
-
-
-        # result += line
+        # result += line2
 
        
-        # print(result)
-        # check = input("Confirm Information (y/n) : ").lower()
-        # if check == "y":
-        #     fin.writelines(("|".join((universityal,faculty,program,catg_program,campus,expenses)))+"|"+"|".join(d_t1)+"|"+"|".join(d_t2)+"|"+"|".join(d_t3)+"|"+"|".join(d_t4)+"\n")
-            
-        # else :
-        #     pass
+        print(result)
+        check = input("Confirm Information (y/n) : ").lower()
+        if check == "y":
+            fin.writelines(("|".join((universityal,faculty,program,catg_program,campus,expenses)))+"\n")
+        else :
+            pass
+        
         # ==========================
 
-        data_universities = [
-            ["มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ", "คณะเทคโนโลยีและการจัดการอุตสาหกรรม", "วท.บ.เทคโนโลยีสารสนเทศ (ภาษาไทย ปกติ) วิทยาเขต ปราจีนบุรี", "ภาษาไทย ปกติ", "ปราจีนบุรี", "19,000", "Portfolio", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.00", "Quota", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.75", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"],
-            ["มหาวิทยาลัยธรรมศาสตร์", "คณะวิทยาศาสตร์และเทคโนโลยี", "วท.บ.วิทยาการคอมพิวเตอร์", "ภาษาไทย ปกติ", "รังสิต", "20,000", "Portfolio", "Accepted", "Accepted", "Declined", "Declined", "Declined", "2.50", "Quota", "Accepted", "Accepted", "Declined", "Declined", "Declined", "2.75", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"],
-            ["จุฬาลงกรณ์มหาวิทยาลัย", "คณะวิทยาศาสตร์", "วท.บ.เทคโนโลยีสารสนเทศ", "ภาษาไทย ปกติ", "ปทุมวัน", "22,000", "Portfolio", "Accepted", "Accepted", "Declined", "Declined", "Declined", "2.50", "Quota", "Accepted", "Accepted", "Declined", "Declined", "Declined", "2.75", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"],
-            ["มหาวิทยาลัยเกษตรศาสตร์", "คณะวิทยาศาสตร์", "วท.บ.เทคโนโลยีสารสนเทศ วิทยาเขตบางเขน", "ภาษาไทย ปกติ", "บางเขน", "18,500", "Portfolio", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.25", "Quota", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.75", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"],
-            ["มหาวิทยาลัยสงขลานครินทร์", "คณะวิทยาศาสตร์", "วท.บ.เทคโนโลยีสารสนเทศ", "ภาษาไทย ปกติ", "หาดใหญ่", "17,500", "Portfolio", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.25", "Quota", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.70", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"],
-            ["มหาวิทยาลัยขอนแก่น", "คณะวิทยาศาสตร์", "วท.บ.เทคโนโลยีสารสนเทศ", "ภาษาไทย ปกติ", "เมืองขอนแก่น", "16,800", "Portfolio", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.00", "Quota", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.50", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"],
-            ["มหาวิทยาลัยเชียงใหม่", "คณะวิทยาศาสตร์", "วท.บ.เทคโนโลยีสารสนเทศ", "ภาษาไทย ปกติ", "เมืองเชียงใหม่", "18,900", "Portfolio", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.30", "Quota", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.70", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"],
-            ["มหาวิทยาลัยมหิดล", "คณะวิทยาศาสตร์", "วท.บ.เทคโนโลยีสารสนเทศ", "ภาษาไทย ปกติ", "พญาไท", "21,800", "Portfolio", "Accepted", "Accepted", "Declined", "Declined", "Declined", "2.50", "Quota", "Accepted", "Accepted", "Declined", "Declined", "Declined", "2.75", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"],
-            ["มหาวิทยาลัยศรีนครินทรวิโรฒ", "คณะวิทยาศาสตร์", "วท.บ.เทคโนโลยีสารสนเทศ", "ภาษาไทย ปกติ", "ประสานมิตร", "19,300", "Portfolio", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.00", "Quota", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.50", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"],
-            ["มหาวิทยาลัยนเรศวร", "คณะวิทยาศาสตร์", "วท.บ.เทคโนโลยีสารสนเทศ", "ภาษาไทย ปกติ", "เมืองพิษณุโลก", "15,900", "Portfolio", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.00", "Quota", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.50", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"],
-            ["มหาวิทยาลัยบูรพา", "คณะวิทยาศาสตร์", "วท.บ.เทคโนโลยีสารสนเทศ", "ภาษาไทย ปกติ", "เมืองชลบุรี", "18,000", "Portfolio", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.10", "Quota", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.60", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"],
-            ["มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี", "คณะเทคโนโลยีสารสนเทศ", "วท.บ.เทคโนโลยีสารสนเทศ", "ภาษาไทย ปกติ", "บางมด", "20,500", "Portfolio", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.00", "Quota", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.75", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"]
-            ]
+        # data_universities = [
+        #     ["มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ", "คณะเทคโนโลยีและการจัดการอุตสาหกรรม", "วท.บ.เทคโนโลยีสารสนเทศ (ภาษาไทย ปกติ) วิทยาเขต ปราจีนบุรี", "ภาษาไทย ปกติ", "ปราจีนบุรี", "19,000", "Portfolio", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.00", "Quota", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.75", "Fssion", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"],
+        #     ["มหาวิทยาลัยธรรมศาสตร์", "คณะวิทยาศาสตร์และเทคโนโลยี", "วท.บ.วิทยาการคอมพิวเตอร์", "ภาษาไทย ปกติ", "รังสิต", "20,000", "Portfolio", "Accepted", "Accepted", "Declined", "Declined", "Declined", "2.50", "Quota", "Accepted", "Accepted", "Declined", "Declined", "Declined", "2.75", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"],
+        #     ["จุฬาลงกรณ์มหาวิทยาลัย", "คณะวิทยาศาสตร์", "วท.บ.เทคโนโลยีสารสนเทศ", "ภาษาไทย ปกติ", "ปทุมวัน", "22,000", "Portfolio", "Accepted", "Accepted", "Declined", "Declined", "Declined", "2.50", "Quota", "Accepted", "Accepted", "Declined", "Declined", "Declined", "2.75", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"],
+        #     ["มหาวิทยาลัยเกษตรศาสตร์", "คณะวิทยาศาสตร์", "วท.บ.เทคโนโลยีสารสนเทศ วิทยาเขตบางเขน", "ภาษาไทย ปกติ", "บางเขน", "18,500", "Portfolio", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.25", "Quota", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.75", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"],
+        #     ["มหาวิทยาลัยสงขลานครินทร์", "คณะวิทยาศาสตร์", "วท.บ.เทคโนโลยีสารสนเทศ", "ภาษาไทย ปกติ", "หาดใหญ่", "17,500", "Portfolio", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.25", "Quota", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.70", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"],
+        #     ["มหาวิทยาลัยขอนแก่น", "คณะวิทยาศาสตร์", "วท.บ.เทคโนโลยีสารสนเทศ", "ภาษาไทย ปกติ", "เมืองขอนแก่น", "16,800", "Portfolio", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.00", "Quota", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.50", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"],
+        #     ["มหาวิทยาลัยเชียงใหม่", "คณะวิทยาศาสตร์", "วท.บ.เทคโนโลยีสารสนเทศ", "ภาษาไทย ปกติ", "เมืองเชียงใหม่", "18,900", "Portfolio", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.30", "Quota", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.70", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"],
+        #     ["มหาวิทยาลัยมหิดล", "คณะวิทยาศาสตร์", "วท.บ.เทคโนโลยีสารสนเทศ", "ภาษาไทย ปกติ", "พญาไท", "21,800", "Portfolio", "Accepted", "Accepted", "Declined", "Declined", "Declined", "2.50", "Quota", "Accepted", "Accepted", "Declined", "Declined", "Declined", "2.75", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"],
+        #     ["มหาวิทยาลัยศรีนครินทรวิโรฒ", "คณะวิทยาศาสตร์", "วท.บ.เทคโนโลยีสารสนเทศ", "ภาษาไทย ปกติ", "ประสานมิตร", "19,300", "Portfolio", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.00", "Quota", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.50", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"],
+        #     ["มหาวิทยาลัยนเรศวร", "คณะวิทยาศาสตร์", "วท.บ.เทคโนโลยีสารสนเทศ", "ภาษาไทย ปกติ", "เมืองพิษณุโลก", "15,900", "Portfolio", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.00", "Quota", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.50", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"],
+        #     ["มหาวิทยาลัยบูรพา", "คณะวิทยาศาสตร์", "วท.บ.เทคโนโลยีสารสนเทศ", "ภาษาไทย ปกติ", "เมืองชลบุรี", "18,000", "Portfolio", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.10", "Quota", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.60", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"],
+        #     ["มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี", "คณะเทคโนโลยีสารสนเทศ", "วท.บ.เทคโนโลยีสารสนเทศ", "ภาษาไทย ปกติ", "บางมด", "20,500", "Portfolio", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.00", "Quota", "Accepted", "Declined", "Declined", "Declined", "Declined", "2.75", "Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined", "Direct Admission", "Declined", "Declined", "Declined", "Declined", "Declined", "Declined"]
+        #     ]
 
-        for course in data_universities:
-            course = "|".join(course)
-            fin.write(course+"\n")
+        # for course in data_universities:
+        #     course = "|".join(course)
+        #     fin.write(course+"\n")
     print()
-
-def tcas_round():
-    pass
-       
 
         
 
@@ -453,6 +284,7 @@ def report_course_info(): # report
                 break
 
 def all_course_info():
+    print()
     result = ""
     datas = data_course_info()
     head = f"|{'Report Course Infomation':^90}|"
@@ -584,40 +416,39 @@ def search_title(univ = "มหาวิทยาลัยเทคโนโล�
             # search_title[f"{n:0>2}"] = key_title
             # สร้าง key ตาม number format n_f จะเป็น key automatic
             # result += (f"| {n:0>2} | {key_title} | {title} |\n")
-            if "TCAS" not in key_title:
-                col_title = pad_text(title,68)
-                result += (f"| {key_title:25} | {col_title} |\n")
-                data_title.append(col_title)
-            else:
-                if key_title == "TCAS 1":
-                    head2 = f"|{'TCAS Rounds':^98}|"
-                    title2 = f"| {"Rouds":^25} |{"Central":^10}| International |{"Vocational":10}|{"Non-Formal":10}|{"GED":^10}|{"Grade":^10}|"
-                    line2 = "-" * len(head2)
-                    result += f"{line2}\n{head2}\n{line2}\n{title2}\n{line2}\n"
-                    result += f"| {key_title} |"
-                    result +=  f" {title[0]:16} |"
-                    result += f"{title[1]:^10}|"    
-                    result += f"{title[2]:^15}|"
-                    result += f"{title[3]:^10}|"
-                    result += f"{title[4]:^10}|"
-                    result += f"{title[5]:^10}|"
-                    result += f"{title[6]:^10}|\n"
-                    # if key_title[0]: result +=  f"{key_title[0]:16} |"
-                    # elif key_title[2]: result += f"{key_title[2]:^15}"
-                    # else: result += f"{key_title:^10}"
-                else: 
-                    result += f"| {key_title} |"
-                    result +=  f" {title[0]:16} |"
-                    result += f"{title[1]:^10}|"    
-                    result += f"{title[2]:^15}|"
-                    result += f"{title[3]:^10}|"
-                    result += f"{title[4]:^10}|"
-                    result += f"{title[5]:^10}|"
-                    result += f"{title[6]:^10}|\n"
-                    # result += f"| {key_title} |"
-                    # if key_title[0]: result +=  f"{key_title[0]:16} |"
-                    # elif key_title[2]: result += f"{key_title[2]:^15}"
-                    # else: result += f"{key_title:^10}"
+            col_title = pad_text(title,68)
+            result += (f"| {key_title:25} | {col_title} |\n")
+            data_title.append(col_title)
+            # else:
+            #     if key_title == "TCAS 1":
+            #         head2 = f"|{'TCAS Rounds':^98}|"
+            #         title2 = f"| {"Rouds":^25} |{"Central":^10}| International |{"Vocational":10}|{"Non-Formal":10}|{"GED":^10}|{"Grade":^10}|"
+            #         line2 = "-" * len(head2)
+            #         result += f"{line2}\n{head2}\n{line2}\n{title2}\n{line2}\n"
+            #         result += f"| {key_title} |"
+            #         result +=  f" {title[0]:16} |"
+            #         result += f"{title[1]:^10}|"    
+            #         result += f"{title[2]:^15}|"
+            #         result += f"{title[3]:^10}|"
+            #         result += f"{title[4]:^10}|"
+            #         result += f"{title[5]:^10}|"
+            #         result += f"{title[6]:^10}|\n"
+            #         # if key_title[0]: result +=  f"{key_title[0]:16} |"
+            #         # elif key_title[2]: result += f"{key_title[2]:^15}"
+            #         # else: result += f"{key_title:^10}"
+            #     else: 
+            #         result += f"| {key_title} |"
+            #         result +=  f" {title[0]:16} |"
+            #         result += f"{title[1]:^10}|"    
+            #         result += f"{title[2]:^15}|"
+            #         result += f"{title[3]:^10}|"
+            #         result += f"{title[4]:^10}|"
+            #         result += f"{title[5]:^10}|"
+            #         result += f"{title[6]:^10}|\n"
+            #         # result += f"| {key_title} |"
+            #         # if key_title[0]: result +=  f"{key_title[0]:16} |"
+            #         # elif key_title[2]: result += f"{key_title[2]:^15}"
+            #         # else: result += f"{key_title:^10}"
     
 
     print(result+line)        
@@ -665,21 +496,21 @@ def main():
     # course_info()
     # report_course_info()
 
-    # add_course_info()
     # data_course_info()
 
     # while True:
     #     menu_main()
 
     # search_course_info()
-    search_title()
+    # search_title()
 
     # all_course_info()
-
     # data_dic()
     # print(data_dic_info())
 
     # data_studten()
+    # add_course_info()
+    menu_main()
 
 if __name__ == "__main__":
     main()

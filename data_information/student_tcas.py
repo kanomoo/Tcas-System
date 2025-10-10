@@ -30,38 +30,38 @@ def student_menu():
 
 def student_register():
     with open(r"data_information/datas/data_student.txt","w",encoding = "utf-8") as fin:
-        # iden_code = input("Enter Identification code : ")
-        # name = input("Enter Name-Surname : ")
-        # email = input("Enter Emaill : ")
-        # phon = input("Enter Phone Number : ")
+        iden_code = input("Enter Identification code : ")
+        name = input("Enter Name-Surname : ")
+        email = input("Enter Emaill : ")
+        phone = input("Enter Phone Number : ")
         
 
-        data_list = [
-        ["1199901140886", "นายปภาวิน ธิติชุณหกุล", "few717254@gmail.com", "0806525546"],
-        ["1199901140999", "นางสาวสมหญิง ตัวอย่าง", "example@gmail.com", "0912345678"],
-        ["1199901140887", "นายสมชาย ใจดี", "somchai@example.com", "0801234567"],
-        ["1199901140888", "นางสาวสมศรี ขยัน", "somsri@example.com", "0812345678"],
-        ["1199901140889", "นายดำรงค์ ศรีสุข", "damrong@example.com", "0823456789"],
-        ["1199901140890", "นางสาวสุนิสา ยิ้มแย้ม", "sunisa@example.com", "0898765432"],
-        ["1199901140891", "นายปรเมศวร์ ดีใจ", "promet@example.com", "0865432198"],
-        ["1199901140892", "นางสาวมุกดา สวยสดงดงาม", "mukda@example.com", "0843219876"],
-        ["1199901140893", "นายสหัส ว่องไว", "sahat@example.com", "0832198765"],
-        ["1199901140894", "นางสาวกิตติมา มีน้ำใจ", "kittima@example.com", "0821987654"]
-        ]
+        # data_list = [
+        # ["1199901140886", "นายปภาวิน ธิติชุณหกุล", "few717254@gmail.com", "0806525546"],
+        # ["1199901140999", "นางสาวสมหญิง ตัวอย่าง", "example@gmail.com", "0912345678"],
+        # ["1199901140887", "นายสมชาย ใจดี", "somchai@example.com", "0801234567"],
+        # ["1199901140888", "นางสาวสมศรี ขยัน", "somsri@example.com", "0812345678"],
+        # ["1199901140889", "นายดำรงค์ ศรีสุข", "damrong@example.com", "0823456789"],
+        # ["1199901140890", "นางสาวสุนิสา ยิ้มแย้ม", "sunisa@example.com", "0898765432"],
+        # ["1199901140891", "นายปรเมศวร์ ดีใจ", "promet@example.com", "0865432198"],
+        # ["1199901140892", "นางสาวมุกดา สวยสดงดงาม", "mukda@example.com", "0843219876"],
+        # ["1199901140893", "นายสหัส ว่องไว", "sahat@example.com", "0832198765"],
+        # ["1199901140894", "นางสาวกิตติมา มีน้ำใจ", "kittima@example.com", "0821987654"]
+        # ]
         
-        for i in data_list:
-            fin.write("|".join(i)+"\n")
+        # for i in data_list:
+        #     fin.write("|".join(i)+"\n")
 
-        iden_code = "1199901140886"
-        name = "นายปภาวิน ธิติชุณหกุล"
-        email = "few717254@gmail.com"
-        phone = "0806525546"
+        # iden_code = "1199901140886"
+        # name = "นายปภาวิน ธิติชุณหกุล"
+        # email = "few717254@gmail.com"
+        # phone = "0806525546"
     
 
-        print(f"Enter Identification code : {iden_code}")
-        print("Enter Emaill : ")
-        print("Enter Phone Number : ")
-        print(f"Enter Name-Surname : {name}")
+        # print(f"Enter Identification code : {iden_code}")
+        # print("Enter Emaill : ")
+        # print("Enter Phone Number : ")
+        # print(f"Enter Name-Surname : {name}")
 
         head = f"|{'Register':^98}|"
         line = "-" * len(head)
@@ -84,10 +84,10 @@ def student_register():
 def sudent_data_setting():
     datas = data_student()
     data_re = data_register()
-    # iden_code = input("Enter Identification code :")
+    iden_code = input("Enter Identification code :")
     
-    iden_code = "1199901140887"
-    print(f"Enter Identification code : {iden_code}")
+    # iden_code = "1199901140887"
+    # print(f"Enter Identification code : {iden_code}")
     
     # for index ,data in enumerate(datas):
         # if iden_code in data and len(data) > 4:

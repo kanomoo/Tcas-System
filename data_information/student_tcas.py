@@ -416,8 +416,8 @@ def search_title(id,univ = "มหาวิทยาลัยเทคโนโ�
                 if i[4][:8] == id:
                     main_id += 1
         id += format(main_id,"0>4")
-        exam.append(id)
         exam.append(tcas)
+        exam.append(id)
         exam.append(time)
         exam.extend(uni_list)
         exam.extend(titles)

@@ -11,7 +11,9 @@ def pad_text(text, width = 0): # padding text เติมช่องว่า�
     return text   
 
 file_register = r"data_information/datas/data_register.txt"
-def report_idcard():
+
+
+def report_idcard(): #ข้อ D แบบรายบุคคล
     id_card = input("Enter Identification Code : ").strip() #รับค่าใช้ ID นักเรียนเด้อ
     with open(file_register,"r",encoding="UTF-8") as FileIn :
         for Data in FileIn:
@@ -39,7 +41,7 @@ def report_idcard():
                 # detail += f"| {"EXPENSES":<15} | {Data[13]:<68} |\n"
                 print(f"{detail}{line}")
 
-def report_idcard_All():
+def report_idcard_All(): #ข้อ D แบบทั้งหมด
     with open(file_register,"r",encoding="UTF-8") as FileIn :
         num = 1
         for Data in FileIn:
@@ -58,7 +60,7 @@ def report_idcard_All():
             print(f"{detail}{line}")
             num += 1
 
-def report_exp_id_card():
+def report_exp_id_card(): #ข้อ E
     id_card = input("Enter Identification Code : ").strip() #รับค่าใช้ ID นักเรียนเด้อ
     with open(file_register,"r",encoding="UTF-8") as FileIn :
         for Data in FileIn:
@@ -78,7 +80,7 @@ def report_exp_id_card():
                 expenses = f"| {pad_text("EXPENSES", 15)} | {pad_text(Data[13], 68)} |\n"
                 print(f"{detail}{line}\n{expenses}{line}")
 
-def report_course():
+def report_course(): #ข้อ F
     with open(file_register,"r",encoding="UTF-8") as FileIn :
         report_count = {} #ผมสร้างเอาไว้เก็บค่า
         for Data in FileIn:

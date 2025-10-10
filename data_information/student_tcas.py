@@ -29,57 +29,69 @@ def student_menu():
 
 
 def student_register():
-    with open(r"data_information/datas/data_student.txt","w",encoding = "utf-8") as fin:
-        iden_code = input("Enter Identification code : ")
-        name = input("Enter Name-Surname : ")
-        email = input("Enter Emaill : ")
-        phone = input("Enter Phone Number : ")
-        
+    datas = data_student()
+    while True:
+        with open(r"data_information/datas/data_student.txt","a",encoding = "utf-8") as fin:
+            iden_code = input("Enter Identification code : ")
+            for data in datas:
+                for i in data:
+                    if iden_code == i:
+                        print("The data is already in the system. Please verify the data for accuracy.")
+                        break
+                    else:
+                        name = input("Enter Name-Surname : ")
+                        email = input("Enter Emaill : ")
+                        phone = input("Enter Phone Number : ")
+                        
 
-        # data_list = [
-        # ["1199901140886", "นายปภาวิน ธิติชุณหกุล", "few717254@gmail.com", "0806525546"],
-        # ["1199901140999", "นางสาวสมหญิง ตัวอย่าง", "example@gmail.com", "0912345678"],
-        # ["1199901140887", "นายสมชาย ใจดี", "somchai@example.com", "0801234567"],
-        # ["1199901140888", "นางสาวสมศรี ขยัน", "somsri@example.com", "0812345678"],
-        # ["1199901140889", "นายดำรงค์ ศรีสุข", "damrong@example.com", "0823456789"],
-        # ["1199901140890", "นางสาวสุนิสา ยิ้มแย้ม", "sunisa@example.com", "0898765432"],
-        # ["1199901140891", "นายปรเมศวร์ ดีใจ", "promet@example.com", "0865432198"],
-        # ["1199901140892", "นางสาวมุกดา สวยสดงดงาม", "mukda@example.com", "0843219876"],
-        # ["1199901140893", "นายสหัส ว่องไว", "sahat@example.com", "0832198765"],
-        # ["1199901140894", "นางสาวกิตติมา มีน้ำใจ", "kittima@example.com", "0821987654"]
-        # ]
-        
-        # for i in data_list:
-        #     fin.write("|".join(i)+"\n")
+                        # data_list = [
+                        # ["1199901140886", "นายปภาวิน ธิติชุณหกุล", "few717254@gmail.com", "0806525546"],
+                        # ["1199901140999", "นางสาวสมหญิง ตัวอย่าง", "example@gmail.com", "0912345678"],
+                        # ["1199901140887", "นายสมชาย ใจดี", "somchai@example.com", "0801234567"],
+                        # ["1199901140888", "นางสาวสมศรี ขยัน", "somsri@example.com", "0812345678"],
+                        # ["1199901140889", "นายดำรงค์ ศรีสุข", "damrong@example.com", "0823456789"],
+                        # ["1199901140890", "นางสาวสุนิสา ยิ้มแย้ม", "sunisa@example.com", "0898765432"],
+                        # ["1199901140891", "นายปรเมศวร์ ดีใจ", "promet@example.com", "0865432198"],
+                        # ["1199901140892", "นางสาวมุกดา สวยสดงดงาม", "mukda@example.com", "0843219876"],
+                        # ["1199901140893", "นายสหัส ว่องไว", "sahat@example.com", "0832198765"],
+                        # ["1199901140894", "นางสาวกิตติมา มีน้ำใจ", "kittima@example.com", "0821987654"]
+                        # ]
+                        
+                        # for i in data_list:
+                        #     fin.write("|".join(i)+"\n")
 
-        # iden_code = "1199901140886"
-        # name = "นายปภาวิน ธิติชุณหกุล"
-        # email = "few717254@gmail.com"
-        # phone = "0806525546"
-    
+                        # iden_code = "1199901140886"
+                        # name = "นายปภาวิน ธิติชุณหกุล"
+                        # email = "few717254@gmail.com"
+                        # phone = "0806525546"
+                    
 
-        # print(f"Enter Identification code : {iden_code}")
-        # print("Enter Emaill : ")
-        # print("Enter Phone Number : ")
-        # print(f"Enter Name-Surname : {name}")
+                        # print(f"Enter Identification code : {iden_code}")
+                        # print("Enter Emaill : ")
+                        # print("Enter Phone Number : ")
+                        # print(f"Enter Name-Surname : {name}")
 
-        head = f"|{'Register':^98}|"
-        line = "-" * len(head)
-        result = f"{line}\n{head}\n{line}\n"
-        datas = {"identification code":iden_code,"emaill":email,"phone":phone,"name":name}
-        for title, data in datas.items():
-            result += (f"| {title:25} | {pad_text(data,68)} |\n")
-        result += line 
-        print(result)
+                        head = f"|{'Register':^98}|"
+                        line = "-" * len(head)
+                        result = f"{line}\n{head}\n{line}\n"
+                        datas = {"identification code":iden_code,"emaill":email,"phone":phone,"name":name}
+                        for title, data in datas.items():
+                            result += (f"| {title:25} | {pad_text(data,68)} |\n")
+                        result += line 
+                        print(result)
 
-        confirm = input("Confirm Information (y/n) : ").lower()
-        match confirm:
-            case "y":
-                fin.writelines("|".join((iden_code,name,email,phone))+"\n")
-            case "n":
-                pass
-            case _:
-                print("Invalid input. Please try again.")        
+                        confirm = input("Confirm Information (y/n) : ").lower()
+                        match confirm:
+                            case "y":
+                                fin.writelines("|".join((iden_code,name,email,phone))+"\n")
+                            case "n":
+                                pass
+                            case _:
+                                print("Invalid input. Please try again.")
+                    break
+                break
+            break
+
 
 def sudent_data_setting():
     datas = data_student()
@@ -98,13 +110,17 @@ def sudent_data_setting():
             email = data[2]
             phone = data[3]
 
-            time = data[4]
-            univ = data[5]
-            fac = data[6]
-            program = data[7]
-            catg = data[8]
-            campus = data[9]
-            expenses = data[10]
+            tcas = data[4]
+
+            std_id = data[5]
+            time = data[6]
+            univ = data[7]
+            fac = data[8]
+            program = data[9]
+            catg = data[10]
+            campus = data[11]
+            expenses = data[12]
+            price = data[13]
 
 
             head = f"|{'Register':^98}|"
@@ -117,6 +133,9 @@ def sudent_data_setting():
             data_students["email"] = email
             data_students["phone"] = phone
 
+            data_students["tcas"] = tcas
+
+            data_students["student id"] = std_id
             data_students["time"] = time
             data_students["university "] = univ
             data_students["faculty"] = fac
@@ -124,30 +143,32 @@ def sudent_data_setting():
             data_students["category"] = catg
             data_students["campus"] = campus
             data_students["expenses"] = expenses
+            data_students["price"] = price
 
             for title, student in data_students.items():
-                result += (f"| {title:25} | {pad_text(student,68)} |\n")
-                if title == "phone":
-                    result += line + "\n"
-                    result += (f"| {data[len(data) - 1]:^96} |\n")
-                    result += line + "\n"
+                if title != "tcas":
+                    result += (f"| {title:25} | {pad_text(student,68)} |\n")
+                    if title == "phone":
+                        result += line + "\n"
+                        result += (f"| {tcas:^96} |\n")
+                        result += line + "\n"
             result += line
             print(result)
 
             choice = input("1. Edit\n2. Delete\n3. Save & Exit\nselect : ")
             match choice:
                 case "1":
-                    # e_data = input("Enter the field name to edit : ")
+                    e_data = input("Enter the field name to edit : ")
 
-                    e_data = "phone"
-                    print(f"Enter The Field Name to Edit : {e_data}")
+                    # e_data = "phone"
+                    # print(f"Enter The Field Name to Edit : {e_data}")
 
                     print(f"{e_data} : {data_students[e_data]}")
             
-                    # n_data = input("Enter data to edit : ")
+                    n_data = input("Enter data to edit : ")
 
-                    n_data = "12"
-                    print(f"Enter Data to Edit : {n_data}")
+                    # n_data = "12"
+                    # print(f"Enter Data to Edit : {n_data}")
 
                     data_students[e_data] = n_data
                     confirm = input("Confirm Change Data (y/n) : ").lower()
@@ -156,9 +177,9 @@ def sudent_data_setting():
                             # with open(r"data_information/datas/data_student.txt","w",encoding = "utf-8") as fin:
                             #     fin.writelines("|".join(([data for key, data in data_students.items()]))+"\n")
                             # print(True)
-                            datas[index] = [sub_data for key, sub_data in data_students.items()]
-                            with open(r"data_information/datas/data_student.txt","w",encoding="utf-8") as fin:
-                                for i in datas:
+                            data_re[index] = [sub_data for key, sub_data in data_students.items()]
+                            with open(r"data_information/datas/data_register.txt","w",encoding="utf-8") as fin:
+                                for i in data_re:
                                     fin.writelines("|".join(i)+"\n")
                             print("Data saved.")
 
@@ -167,13 +188,14 @@ def sudent_data_setting():
                         case _:
                             print("Invalid input. Please try again.")
                 case "2":
-                    del datas[index]
-                    with open(r"data_information/datas/data_student.txt","w",encoding="utf-8") as fin:
-                        for i in datas:
+                    del data_re[index]
+                    with open(r"data_information/datas/data_register.txt","w",encoding="utf-8") as fin:
+                        for i in data_re:
                             fin.writelines("|".join(i)+"\n")
                     print("Data deleted.")
             break
     else:
+        result = ""
         for index ,data in enumerate(datas):
 
             if iden_code in data and len(data) <= 4:
@@ -204,14 +226,12 @@ def sudent_data_setting():
                 choice = input("1. Edit\n2. Delete\n3. Save & Exit\nselect : ")
                 match choice:
                     case "1":
-                        # e_data = input("Enter the field name to edit : ")
+                        e_data = input("Enter the field name to edit : ")
 
-                        e_data = "phone"
-                        print(f"Enter The Field Name to Edit : {e_data}")
-
-                        print(f"{e_data} : {data_students[e_data]}")
+                        # e_data = "phone"
+                        # print(f"Enter The Field Name to Edit : {e_data}")
                 
-                        # n_data = input("Enter data to edit : ")
+                        n_data = input("Enter data to edit : ")
 
                         n_data = "12"
                         print(f"Enter Data to Edit : {n_data}")
@@ -241,7 +261,8 @@ def sudent_data_setting():
                 break
             
             else:
-                print("No sutdent data")
+                result = "No sutdent data"
+        print(result)
 
 def data_student():
     data = []
@@ -259,9 +280,6 @@ def data_register():
 
 def student_register_exam():
     univ, id1 = search_university()
-    if univ is None:
-        print("Invalid university selection.")
-        return None
     fac, id2 = search_faculty(id1,univ)
     program, id3 = search_program(id2,univ,fac)
     search_title(id3,univ,fac,program)
@@ -296,7 +314,8 @@ def search_university():
         id = ""
         id += choice if choice != "00" and choice in check_id else ""
         if choice in search_univ and choice != "00": return(search_univ[choice]) ,id 
-        elif choice == "00": break
+        elif choice == "00": student_menu()
+
 
 def search_faculty(id,univ):
     while True:
@@ -323,7 +342,7 @@ def search_faculty(id,univ):
         choice = input("selcet : ")
         id += choice if choice != "00" and choice in check_id else ""
         if choice in search_fac and choice != "00": return(search_fac[choice]) ,id
-        elif choice == "00": break
+        elif choice == "00": search_university()
         print()
 
 def search_program(id,univ,fac):
@@ -403,54 +422,64 @@ def search_title(id,univ = "มหาวิทยาลัยเทคโนโ�
             for key, n_tcas in tcass.items():
                 result += (f"| {key:0>2} | {n_tcas:{len(head)-9}} |\n")
                 check_id.append(key)
+            result += (f"| {0:0>2} | {"Back to Search Course Information":{len(head)-9}} |\n")
 
         print(result+line)   
 
         choice = input("Enter Round Tcas : ")
-        tcas = tcass[choice] ## 
-        id += choice if choice != "00" and choice in check_id else ""
-        main_id = 1
-        with open(r"data_information/datas/data_register.txt","r",encoding="utf-8") as fin :
-            for i in fin:
-                i = i.strip("\n").split("|")
-                if i[4][:8] == id:
-                    main_id += 1
-        id += format(main_id,"0>4")
-        exam.append(tcas)
-        exam.append(id)
-        exam.append(time)
-        exam.extend(uni_list)
-        exam.extend(titles)
-        exam.append("300")
-        print(id)
-        choice = input(f"1. register for study\n2. Back to main\nselect : ")
-        match choice:
-            case "1":
-                datas = data_student()
+        if choice == "00": search_program(id,univ,fac)
+        elif choice in tcass and choice != "00":
+            tcas = tcass[choice] ## 
+            id += choice if choice != "00" and choice in check_id else ""
+            main_id = 1
+            with open(r"data_information/datas/data_register.txt","r",encoding="utf-8") as fin :
+                for i in fin:
+                    i = i.strip("\n").split("|")
+                    if i[4][:8] == id:
+                        main_id += 1
+            id += format(main_id,"0>4")
+            exam.append(tcas)
+            exam.append(id)
+            exam.append(time)
+            exam.extend(uni_list)
+            exam.extend(titles)
+            exam.append("300")
+            print(id)
+            choice = input(f"1. register for study\n2. Back to main\nselect : ")
+            match choice:
+                case "1":
+                    datas = data_student
+                    data_re = data_register()
 
-                iden_code = input("Enter Identification code :")
+                    iden_code = input("Enter Identification code :")
+                    for i in data_re:
+                        if i in data_re:
+                            print("The data is already in the system. Please verify the data for accuracy.")
+                            break
+                        else:
+                            # iden_code = "1199901140886"
+                            # print(f"Enter Identification code : {iden_code}")
 
-                # iden_code = "1199901140886"
-                # print(f"Enter Identification code : {iden_code}")
+                            for index ,data in enumerate(datas):
+                                if iden_code in data and len(data) <= 4:
+                                    with open(r"data_information/datas/data_register.txt","a",encoding="utf-8") as fin:
+                                        data.extend(exam)
+                                        fin.writelines("|".join(data)+"\n")
 
-                for index ,data in enumerate(datas):
-                    if iden_code in data and len(data) <= 4:
-                        with open(r"data_information/datas/data_register.txt","a",encoding="utf-8") as fin:
-                            data.extend(exam)
-                            fin.writelines("|".join(data)+"\n")
-
-                            # # datas[index].extend(exam)
-                            # for i in data:
-                            #     fin.writelines("|".join(i)+"\n")
-                        print("Data saved.")
-                        break
-                    elif len(data) >= 5:
-                        print("This Data already exists. You cannot add it again.")
-                    else:
-                        print("No sutdent data")
-                break
-            case "2":
-                break
+                                        # # datas[index].extend(exam)
+                                        # for i in data:
+                                        #     fin.writelines("|".join(i)+"\n")
+                                    print("Data saved.")
+                                    break
+                                elif len(data) >= 5:
+                                    print("This Data already exists. You cannot add it again.")
+                                else:
+                                    print("No sutdent data")
+                            break
+                    break
+                case "2":
+                    break
+        else: pass
 
         # choice = input("Enter Identification code")
 

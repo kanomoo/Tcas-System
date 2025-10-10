@@ -110,6 +110,6 @@ def report_course():
 
 
 report_idcard()
-# report_idcard_All()
-# report_exp_id_card()
-# report_course()
+report_idcard_All()
+report_exp_id_card()
+report_course()

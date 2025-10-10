@@ -357,19 +357,8 @@ def search_title(univ = "มหาวิทยาลัยเทคโนโล�
     
 
     print(result+line)        
-    choice = input(f"1. register for study\n2. Back to main\nselect : ")
-    match choice:
-        case "1":
-            # import student function at runtime to avoid circular import
-            datas = []
-            data1 = []
-            # iden_code = input("Enter Identification code : ")
-            iden_code = "1199901140886"
-            print("Enter Identification code : ",iden_code)
-            for data in datas:
-                if iden_code in data:
-                    data.extend((univ,fac,program))
-            print(data)
+    choice = input(f"1. Change data\n2. Delect data\nselect : ")
+    
 
 
     # choice = input("Enter Identification code")

@@ -9,6 +9,7 @@ def main(): # report main menu
         choice = input(f"{line}\n{head}\n{line}\n|{"1. Student Menu":25}|\n|{"2. Course information":25}|\n|{"3. Exit Program":25}|\n{line}\nSelect option : ")
         match choice:
             case "1":
+               
                 student_menu()
             case "2":
                 course_info()

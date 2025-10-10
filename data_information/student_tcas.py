@@ -16,7 +16,7 @@ def student_menu():
         print()
         head = f"|{"Student Menu":^25}|"
         line = f"+{"=" * (len(head) - 2)}+"
-        choice = input(f"{line}\n{head}\n{line}\n|{"1. Student Register":25}|\n|{"2. Student Register Exam":25}|\n|{"4. Student data setting":25}|\n|{"3. Exit Program":25}|\n{line}\nSelect option : ")
+        choice = input(f"{line}\n{head}\n{line}\n|{"1. Student Register":25}|\n|{"2. Student Register Exam":25}|\n|{"3. Student data setting":25}|\n|{"4. Exit Program":25}|\n{line}\nSelect option : ")
         match choice:
             case "1":
                 student_register()

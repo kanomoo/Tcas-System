@@ -77,7 +77,7 @@ def course_info(): # menu input course_info
         
 
 def add_course_info():
-    with open(r"data_information/datas/data_course_info.txt","w",encoding="utf-8") as fin:
+    with open(r"data_information/datas/data_course_info.txt","a",encoding="utf-8") as fin:
         universityal =  input("Enter University Name :")
         faculty = input("Enter Faculty : ")
         program = input("Enter Program : ")

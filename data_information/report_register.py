@@ -107,4 +107,9 @@ def report_course():
         print(line)
         print(f"| {pad_text("จำนวนทั้งหมด", 68)} | {pad_text(f'{total_people} คน', 25)} |")
         print(line)
-report_course()
+
+
+report_idcard()
+# report_idcard_All()
+# report_exp_id_card()
+# report_course()

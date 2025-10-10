@@ -50,6 +50,7 @@ def report_idcard_All(): #ข้อ D แบบทั้งหมด
             line = "="*(len(header))
             print(f"{line}\n{header}\n{line}")
             detail = f"| {pad_text("TCAS", 15)} | {pad_text(Data[4], 71)} |\n"
+            detail += f"| {pad_text("ID", 15)} | {pad_text(Data[0], 71)} |\n"
             detail += f"| {pad_text("NAME", 15)} | {pad_text(Data[1], 71)} |\n"
             detail += f"| {pad_text("UNIVERSITY", 15)} | {pad_text(Data[7], 71)} |\n"
             detail += f"| {pad_text("FACULTY", 15)} | {pad_text(Data[8], 71)} |\n"
@@ -114,6 +115,6 @@ def report_course(): #ข้อ F
 
 
 # report_idcard()
-# report_idcard_All()
+report_idcard_All()
 # report_exp_id_card()
-#report_course()
+# report_course()

@@ -448,12 +448,12 @@ def search_title(id,univ = "มหาวิทยาลัยเทคโนโ�
             choice = input(f"1. register for study\n2. Back to main\nselect : ")
             match choice:
                 case "1":
-                    datas = data_student
+                    datas = data_student()
                     data_re = data_register()
 
                     iden_code = input("Enter Identification code :")
                     for i in data_re:
-                        if i in data_re:
+                        if i in data_re[0]:
                             print("The data is already in the system. Please verify the data for accuracy.")
                             break
                         else:

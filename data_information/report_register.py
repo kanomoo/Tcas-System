@@ -113,8 +113,46 @@ def report_course(): #ข้อ F
         print(f"| {pad_text("จำนวนทั้งหมด", 86)} | {pad_text(f'{total_people} คน', 20)} |")
         print(line)
 
+def report_paymentAll(): #ข้อ G
+    with open(file_register,"r",encoding="UTF-8") as FileIn :
+        report_count = {} #ผมสร้างเอาไว้เก็บค่า
+        for Data in FileIn:
+            Data = Data.strip().split("|")
+            university = Data[7]
+            department = Data[9]
+            tcas = Data[4]
+            expenses = Data[13]
+            primary = (tcas,university,department,expenses)
+            # print(primary)
+            if primary in report_count: #ผมใช้ifนับว่าถ้าหลักสูตรนี้มีคนให้ +1 แต่ถ้าไม่มีให้สร้างใหม่ ค่าเริ่ม 1
+                report_count[primary] += 1
+            else:
+                report_count[primary] = 1
+        header = f"{"REPORT COURSE TOTAL":^121}"
+        line = "=" * (len(header))
+        print(f"{line}\n{header}\n{line}")
+        print(f"| {pad_text("UNIVERSITY - มหาวิทยาลัย", 35)} | {pad_text("COURSE - หลักสูตร", 20)} | {pad_text("TCAS - รอบสมัคร", 15)} | {pad_text("NUMBER - จำนวน", 15)} | {pad_text("MONEY - จำนวนเงิน", 20)} |")
+        print(line)
+        total_people = 0
+        total_expenses = 0
+        for key, value in report_count.items():
+            tcas = key[0]
+            university = key[1]
+            department = key[2]
+            expenses = key[3]
+            count = value
+            total_people += count
+            total_exp_people = int(expenses)
+            total_expenses += total_exp_people
+            print(f"| {pad_text(university, 35)} | {pad_text(department, 20)} | {pad_text(tcas, 15)} | {pad_text(f'{count} คน', 15)} | {pad_text(f'{total_exp_people:>16,.2f} บาท')} |")
+        print(line)
+        print(f"| {pad_text("จำนวนคนสมัครทั้งหมด - TOTAL NUMBER OF REGISTER", 94)} | {pad_text(f'{total_people:>17} คน')} |")
+        print(line)
+        print(f"| {pad_text("ยอดเงินทั้งหมด - TOTAL AMOUNT", 94)} | {pad_text(f'{total_expenses:>16,.2f} บาท')} |")
+        print(line)
 
 # report_idcard()
-report_idcard_All()
+# report_idcard_All()
 # report_exp_id_card()
 # report_course()
+report_paymentAll()

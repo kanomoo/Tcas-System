@@ -126,7 +126,7 @@ def report_paymentAll(): #ข้อ G
                 report_count[primary] += 1
             else:
                 report_count[primary] = 1
-        header = f"{"REPORT COURSE TOTAL":^121}"
+        header = f"|{"REPORT COURSE TOTAL":^119}|"
         line = "="*(len(header))
         print(f"{line}\n{header}\n{line}")
         print(f"| {pad_text("UNIVERSITY - มหาวิทยาลัย", 35)} | {pad_text("COURSE - หลักสูตร", 20)} | {pad_text("TCAS - รอบสมัคร", 15)} | {pad_text("NUMBER - จำนวน", 15)} | {pad_text("MONEY - จำนวนเงิน", 20)} |")

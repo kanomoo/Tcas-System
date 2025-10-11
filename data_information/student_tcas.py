@@ -471,7 +471,7 @@ def search_title(id,univ = "มหาวิทยาลัยเทคโนโ�
                 result += (f"| {key_title:25} | {col_title} |\n")
                 titles.append(title)
 
-            tcass = {"01":"TCAS1 Portfolio","02":"TCAS2 Quota","03":"TCAS1 Admission","04":"TCAS4 Direct Admission"}
+            tcass = {"01":"TCAS1 Portfolio","02":"TCAS2 Quota","03":"TCAS3 Admission","04":"TCAS4 Direct Admission"}
             result += f"{line}\n|{'Round TCAS':^98}|\n{line}\n"
             for key, n_tcas in tcass.items():
                 result += (f"| {key:0>2} | {n_tcas:{len(head)-9}} |\n")

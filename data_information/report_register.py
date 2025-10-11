@@ -133,7 +133,7 @@ def report_paymentAll(): #ข้อ G
         print(line)
         total_people = 0
         total_expenses = 0
-        for key, value in report_count.items():
+        for key, value in sorted(report_count.items()):
             tcas = key[0]
             university = key[1]
             department = key[2]

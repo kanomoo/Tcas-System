@@ -12,7 +12,6 @@ def pad_text(text, width = 0): # padding text เติมช่องว่า�
 
 file_register = r"data_information/datas/data_register.txt"
 
-
 def report_idcard(): #ข้อ D แบบรายบุคคล
     id_card = input("Enter Identification Code : ").strip() #รับค่าใช้ ID นักเรียนเด้อ
     with open(file_register,"r",encoding="UTF-8") as FileIn :
@@ -57,8 +56,8 @@ def report_idcard_All(): #ข้อ D แบบทั้งหมด
             detail += f"| {pad_text("DEPARTMENT", 15)} | {pad_text(Data[9], 71)} |\n"
             detail += f"| {pad_text("CAMPUS", 15)} | {pad_text(Data[10], 71)} |\n"
             detail += f"| {pad_text("DATE", 15)} | {pad_text(Data[6], 71)} |\n"
-            detail += f"| {pad_text("EXPENSES", 15)} | {pad_text(Data[13], 71)} |\n"
-            print(f"{detail}{line}")
+            expenses = f"| {pad_text("EXPENSES", 15)} | {pad_text(Data[13], 71)} |\n"
+            print(f"{detail}{line}\n{expenses}{line}")
             num += 1
 
 def report_exp_id_card(): #ข้อ E
@@ -89,7 +88,7 @@ def report_course(): #ข้อ F
             university = Data[7]
             department = Data[9]
             tcas = Data[4]
-            primary = (tcas,university, department)
+            primary = (tcas,university,department)
             # print(primary)
             if primary in report_count: #ผมใช้ifนับว่าถ้าหลักสูตรนี้มีคนให้ +1 แต่ถ้าไม่มีให้สร้างใหม่ ค่าเริ่ม 1
                 report_count[primary] += 1
@@ -123,13 +122,12 @@ def report_paymentAll(): #ข้อ G
             tcas = Data[4]
             expenses = Data[13]
             primary = (tcas,university,department,expenses)
-            # print(primary)
             if primary in report_count: #ผมใช้ifนับว่าถ้าหลักสูตรนี้มีคนให้ +1 แต่ถ้าไม่มีให้สร้างใหม่ ค่าเริ่ม 1
                 report_count[primary] += 1
             else:
                 report_count[primary] = 1
         header = f"{"REPORT COURSE TOTAL":^121}"
-        line = "=" * (len(header))
+        line = "="*(len(header))
         print(f"{line}\n{header}\n{line}")
         print(f"| {pad_text("UNIVERSITY - มหาวิทยาลัย", 35)} | {pad_text("COURSE - หลักสูตร", 20)} | {pad_text("TCAS - รอบสมัคร", 15)} | {pad_text("NUMBER - จำนวน", 15)} | {pad_text("MONEY - จำนวนเงิน", 20)} |")
         print(line)
@@ -142,7 +140,7 @@ def report_paymentAll(): #ข้อ G
             expenses = key[3]
             count = value
             total_people += count
-            total_exp_people = int(expenses)
+            total_exp_people = int(expenses)*count
             total_expenses += total_exp_people
             print(f"| {pad_text(university, 35)} | {pad_text(department, 20)} | {pad_text(tcas, 15)} | {pad_text(f'{count} คน', 15)} | {pad_text(f'{total_exp_people:>16,.2f} บาท')} |")
         print(line)
@@ -151,7 +149,7 @@ def report_paymentAll(): #ข้อ G
         print(f"| {pad_text("ยอดเงินทั้งหมด - TOTAL AMOUNT", 94)} | {pad_text(f'{total_expenses:>16,.2f} บาท')} |")
         print(line)
 
-# report_idcard()
+#report_idcard()
 # report_idcard_All()
 # report_exp_id_card()
 # report_course()

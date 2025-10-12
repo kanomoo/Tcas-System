@@ -26,6 +26,8 @@ def student_menu():
                 sudent_data_setting()
             case "4":
                 break
+            case _:
+                print("Invalid input Please try again")
 
 
 def student_register():
@@ -71,12 +73,12 @@ def student_register():
                         # print("Enter Phone Number : ")
                         # print(f"Enter Name-Surname : {name}")
 
-                        head = f"|{'Register':^98}|"
+                        head = f"|{'Register':^88}|"
                         line = "-" * len(head)
                         result = f"{line}\n{head}\n{line}\n"
                         datas = {"identification code":iden_code,"emaill":email,"phone":phone,"name":name}
                         for title, data in datas.items():
-                            result += (f"| {title:25} | {pad_text(data,68)} |\n")
+                            result += (f"| {title:25} | {pad_text(data,58)} |\n")
                         result += line 
                         print(result)
 
@@ -97,217 +99,259 @@ def sudent_data_setting():
     print()
     datas = data_student()
     data_re = data_register()
-    iden_code = input("Enter Identification code :")
-    
-    # iden_code = "1199901140887"
-    # print(f"Enter Identification code : {iden_code}")
-    
-    # for index ,data in enumerate(datas):
-        # if iden_code in data and len(data) > 4:
-    for index ,data in enumerate(data_re):
-        if iden_code in data and len(data) > 4:
+    iden_code = input("Enter Identification code : ")
+    while True:
+        # iden_code = "1199901140887"
+        # print(f"Enter Identification code : {iden_code}")
+        
+        # for index ,data in enumerate(datas):
+            # if iden_code in data and len(data) > 4:
+        if any(iden_code in data for data in data_re): # any คืนค่า True ถ้า true ถูกอย่างน้อยแค่อันเดียว เขียนแบบนี้แทนการเขียน for หลายรอบ
+            for index ,data in enumerate(data_re):
+                if iden_code in data and len(data) > 4:
 
-            datas = data_student()
-            data_re = data_register()
+                    datas = data_student()
+                    data_re = data_register()
 
-            iden_code = data[0]
-            name = data[1]
-            email = data[2]
-            phone = data[3]
+                    iden_code = data[0]
+                    name = data[1]
+                    email = data[2]
+                    phone = data[3]
 
-            tcas = data[4]
+                    tcas = data[4]
 
-            std_id = data[5]
-            time = data[6]
-            univ = data[7]
-            fac = data[8]
-            program = data[9]
-            catg = data[10]
-            campus = data[11]
-            expenses = data[12]
-            price = data[13]
+                    std_id = data[5]
+                    time = data[6]
+                    univ = data[7]
+                    fac = data[8]
+                    program = data[9]
+                    catg = data[10]
+                    campus = data[11]
+                    expenses = data[12]
+                    price = data[13]
 
 
-            head = f"|{'Register':^98}|"
-            line = "-" * len(head)
-            result = f"{line}\n{head}\n{line}\n"
-            data_students = {}
+                    head = f"|{'Register':^88}|"
+                    line = "-" * len(head)
+                    result = f"\n{line}\n{head}\n{line}\n"
+                    data_students = {}
 
-            data_students["identity code"] = iden_code
-            data_students["name"] = name
-            data_students["email"] = email
-            data_students["phone"] = phone
+                    data_students["identity code"] = iden_code
+                    data_students["name"] = name
+                    data_students["email"] = email
+                    data_students["phone"] = phone
 
-            data_students["tcas"] = tcas
+                    data_students["tcas"] = tcas
 
-            data_students["student id"] = std_id
-            data_students["time"] = time
-            data_students["university "] = univ
-            data_students["faculty"] = fac
-            data_students["program"] = program
-            data_students["category"] = catg
-            data_students["campus"] = campus
-            data_students["expenses"] = expenses
-            data_students["price"] = price
+                    data_students["student id"] = std_id
+                    data_students["time"] = time
+                    data_students["university "] = univ
+                    data_students["faculty"] = fac
+                    data_students["program"] = program
+                    data_students["category"] = catg
+                    data_students["campus"] = campus
+                    data_students["expenses"] = expenses
+                    data_students["price"] = price
 
-            for title, student in data_students.items():
-                if title != "tcas":
-                    result += (f"| {title:25} | {pad_text(student,68)} |\n")
-                    if title == "phone":
-                        result += line + "\n"
-                        result += (f"| {tcas:^96} |\n")
-                        result += line + "\n"
-            result += line
-            print(result)
-            
-            choice = input(f"\n{"-" * 22}\n|{"1. Edit":20}|\n|{"2. Delete":20}|\n|{"3. Save & Exit":20}|\n{"-" * 22}\nselect : ")
-            match choice:
-                case "1":
-                    e_data = input("Enter the field name to edit : ")
-                    if e_data in data_students and e_data in ["identity code","name","email","phone"]:
-                        # e_data = "phone"
-                        # print(f"Enter The Field Name to Edit : {e_data}")
-
-                        n_data = input("Enter data to edit : ")
-
-                        print(f"{e_data} : {data_students[e_data]}")
-                
-                        # n_data = "12"
-                        # print(f"Enter Data to Edit : {n_data}")
-
-                        data_students[e_data] = n_data
-                        confirm = input("Confirm Change Data (y/n) : ").lower()
-                        match confirm:
-                            case "y":
-                                # with open(r"data_information/datas/data_student.txt","w",encoding = "utf-8") as fin:
-                                #     fin.writelines("|".join(([data for key, data in data_students.items()]))+"\n")
-                                # print(True)
-                                data_re[index] = [sub_data for key, sub_data in data_students.items()]
-                                with open(r"data_information/datas/data_register.txt","w",encoding="utf-8") as fin:
-                                    for i in data_re:
-                                        fin.writelines("|".join(i)+"\n")
-                                print("Data saved.")
-
-                            case "n":
-                                print("Data not save")
-                            case _:
-                                print("Invalid input. Please try again.")
-                    elif e_data in data_students:
-                        print("No premistion to edit")
-                    else:
-                        print("No field name in data")
-                case "2":
-                    select = input(f"1. Delete data exam\n2. Delete all data\nselect : ")
-                    match select:
+                    for title, student in data_students.items():
+                        if title != "tcas":
+                            result += (f"| {title:25} | {pad_text(student,58)} |\n")
+                            if title == "phone":
+                                result += line + "\n"
+                                result += (f"| {tcas:^86} |\n")
+                                result += line + "\n"
+                    result += line
+                    print(result)
+                    
+                    choice = input(f"\n{"-" * 22}\n|{"1. Edit":20}|\n|{"2. Delete":20}|\n|{"3. Back to manu":20}|\n{"-" * 22}\nselect : ")
+                    match choice:
                         case "1":
-                            try:
-                                del data_re[index]
-                                with open(r"data_information/datas/data_register.txt","w",encoding="utf-8") as fin:
-                                    for i in data_re:
-                                        fin.writelines("|".join(i)+"\n")
-                                print("Data deleted.")
-                            except IndexError: print("No data to deted")
-                        case "2":
-                            for index, data_s in enumerate(datas):
-                                if iden_code in data_s:
-                                    try:
-                                        del data_s[index]
+                            e_data = input("Enter the field name to edit : ")
+                            if e_data in data_students and e_data in ["identity code","name","email","phone"]:
+                                # e_data = "phone"
+                                # print(f"Enter The Field Name to Edit : {e_data}")
+
+                                print(f"{e_data} : {data_students[e_data]}")
+                                n_data = input("Enter data to edit : ")
+                        
+                                # n_data = "12"
+                                # print(f"Enter Data to Edit : {n_data}")
+
+                                data_students[e_data] = n_data
+                                confirm = input("Confirm Change Data (y/n) : ").lower()
+                                match confirm:
+                                    case "y":
+                                        # with open(r"data_information/datas/data_student.txt","w",encoding = "utf-8") as fin:
+                                        #     fin.writelines("|".join(([data for key, data in data_students.items()]))+"\n")
+                                        # print(True)
+                                        data_re[index] = [sub_data for key, sub_data in data_students.items()]
                                         with open(r"data_information/datas/data_register.txt","w",encoding="utf-8") as fin:
                                             for i in data_re:
                                                 fin.writelines("|".join(i)+"\n")
-                                        print("Data deleted.")
-                                    except IndexError: print("No data to deted")     
-                case "3":
-                    break
-                case _:
-                    print("Invalid input Please try again")
-                
-    else:
-        result = ""
-        for index ,data in enumerate(datas):
-            if iden_code in data and len(data) <= 4:
-                iden_code = data[0]
-                name = data[1]
-                email = data[2]
-                phone = data[3]
+                                        print("Data saved.")
 
+                                    case "n":
+                                        print("Data not save")
+                                    case _:
+                                        print("Invalid input. Please try again.")
+                            elif e_data in data_students:
+                                print("No premistion to edit")
+                            else:
+                                print("No field name in data")
+                        case "2":
+                            select = input(f"1. Delete data exam\n2. Delete all data\nselect : ")
+                            match select:
+                                case "1":
+                                    confirm = input("Confirm deleted (y/n) : ").lower()
+                                    match confirm:
+                                        case "y":
+                                            try:
+                                                del data_re[index]
+                                                with open(r"data_information/datas/data_register.txt","w",encoding="utf-8") as fin:
+                                                    for i in data_re:
+                                                        fin.writelines("|".join(i)+"\n")
+                                                print("Data deleted.")
+                                            except IndexError: print("No data to deleted")
+                                        case "n":
+                                            pass
+                                        case _:
+                                            print("Invalid input Please try again")
+                                case "2":
+                                    confirm = input("Confirm deleted (y/n) : ").lower()
+                                    match confirm:
+                                        case "y":
+                                            try:
+                                                del data_re[index]
+                                                with open(r"data_information/datas/data_register.txt","w",encoding="utf-8") as fin:
+                                                    for i in data_re:
+                                                        fin.writelines("|".join(i)+"\n")
+                                            except IndexError: print("No data to deleted")
 
+                                            for index, data_s in enumerate(datas):
+                                                if iden_code in data_s:
+                                                    try:
+                                                        del datas[index]
+                                                        with open(r"data_information/datas/data_student.txt","w",encoding="utf-8") as fin:
+                                                            for i in datas:
+                                                                fin.writelines("|".join(i)+"\n")
+                                                        print("Data all deleted.")
+                                                        student_menu()
+                                                    except IndexError: print("No data to deleted")
+                                            else: print("No data to deleted")
+                                        case "n":
+                                            pass
+                                        case _:
+                                            print("Invalid input Please try again")
 
-                head = f"|{'Register':^98}|"
-                line = "-" * len(head)
-                result = f"{line}\n{head}\n{line}\n"
-                data_students = {}
+                        case "3":
+                            student_menu()
+                        case _:
+                            print("Invalid input Please try again")
                     
-                data_students["identity code"] = iden_code
-                data_students["name"] = name
-                data_students["email"] = email
-                data_students["phone"] = phone
+        # else:
+        elif any(iden_code in data for data in datas): # any คืนค่า True ถ้า true ถูกอย่างน้อยแค่อันเดียว เขียนแบบนี้แทนการเขียน for หลายรอบ
+            mess = ""
+            for index ,data in enumerate(datas):
+                if iden_code in data and len(data) <= 4:
+                    iden_code = data[0]
+                    name = data[1]
+                    email = data[2]
+                    phone = data[3]
 
-                for title, student in data_students.items():
-                    result += (f"| {title:25} | {pad_text(student,68)} |\n")
-                result += line + "\n"
-                result += (f"| {"No data exam":^96} |\n")
-                result += line
-                print(result)
 
-                choice = input(f"\n{"-" * 22}\n|{"1. Edit":20}|\n|{"2. Delete":20}|\n|{"3. Save & Exit":20}|\n{"-" * 22}\nselect : ")
-                match choice:
-                    case "1":
-                        e_data = input("Enter the field name to edit : ")
-                        if e_data in data_students and e_data in ["identity code","name","email","phone"]:
-                
-                            n_data = input("Enter data to edit : ")
 
-                            print(f"{e_data} : {data_students[e_data]}")
+                    head = f"|{'Register':^88}|"
+                    line = "-" * len(head)
+                    result = f"\n{line}\n{head}\n{line}\n"
+                    data_students = {}
+                        
+                    data_students["identity code"] = iden_code
+                    data_students["name"] = name
+                    data_students["email"] = email
+                    data_students["phone"] = phone
 
-                            data_students[e_data] = n_data
-                            confirm = input("Confirm Change Data (y/n) : ").lower()
-                            match confirm:
-                                case "y":
-                                    # with open(r"data_information/datas/data_student.txt","w",encoding = "utf-8") as fin:
-                                    #     fin.writelines("|".join(([data for key, data in data_students.items()]))+"\n")
-                                    # print(True)
-                                    datas[index] = [sub_data for key, sub_data in data_students.items()]
-                                    with open(r"data_information/datas/data_student.txt","w",encoding="utf-8") as fin:
-                                        for i in datas:
-                                            fin.writelines("|".join(i)+"\n")
-                                    print("Data saved.")
-                                case "n":
-                                    print("Data not save")
-                                case _:
-                                    print("Invalid input. Please try again.")
-                        elif e_data in data_students:
-                            print("No premistion to edit")
-                        else:
-                            print("No field name in data")
-                    case "2":
-                        select = input(f"1. Delete data exam\n2. Delete all data\nselect : ")
-                        match select:
-                            case "1":
-                                for index, data_s in enumerate(data_re):
-                                    if iden_code in data_s:
-                                        try:
-                                            del data_re[index]
-                                            with open(r"data_information/datas/data_register.txt","w",encoding="utf-8") as fin:
-                                                for i in data_re:
-                                                    fin.writelines("|".join(i)+"\n")
-                                            print("Data deleted.")
-                                        except IndexError: print("No data to deted")
-                            case "2":
-                                try:
-                                    del datas[index]
-                                    with open(r"data_information/datas/data_student.txt","w",encoding="utf-8") as fin:
-                                        for i in datas:
-                                            fin.writelines("|".join(i)+"\n")
-                                    print("Data deleted.")
-                                except IndexError: print("No data to deted")
-                    case "3":
-                        break
-                    case _:
-                        print("Invalid input Please try again")            
-            else:
-                result = "No sutdent data"
-        
+                    for title, student in data_students.items():
+                        result += (f"| {title:25} | {pad_text(student,58)} |\n")
+                    result += line + "\n"
+                    result += (f"| {"No data exam":^86} |\n")
+                    result += line
+                    print(result)
+
+                    choice = input(f"\n{"-" * 22}\n|{"1. Edit":20}|\n|{"2. Delete":20}|\n|{"3. Back to menu":20}|\n{"-" * 22}\nselect : ")
+                    match choice:
+                        case "1":
+                            e_data = input("Enter the field name to edit : ")
+                            if e_data in data_students and e_data in ["identity code","name","email","phone"]:
+                    
+                                print(f"{e_data} : {data_students[e_data]}")
+                                n_data = input("Enter data to edit : ")
+
+                                data_students[e_data] = n_data
+                                confirm = input("Confirm Change Data (y/n) : ").lower()
+                                match confirm:
+                                    case "y":
+                                        # with open(r"data_information/datas/data_student.txt","w",encoding = "utf-8") as fin:
+                                        #     fin.writelines("|".join(([data for key, data in data_students.items()]))+"\n")
+                                        # print(True)
+                                        datas[index] = [sub_data for key, sub_data in data_students.items()]
+                                        with open(r"data_information/datas/data_student.txt","w",encoding="utf-8") as fin:
+                                            for i in datas:
+                                                fin.writelines("|".join(i)+"\n")
+                                        print("Data saved.")
+                                    case "n":
+                                        print("Data not save")
+                                    case _:
+                                        print("Invalid input. Please try again.")
+                            elif e_data in data_students:
+                                print("No premistion to edit")
+                            else:
+                                print("No field name in data")
+                        case "2":
+                            select = input(f"1. Delete data exam\n2. Delete all data\nselect : ")
+                            match select:
+                                case "1":
+                                    for index, data_s in enumerate(data_re):
+                                        if iden_code in data_s:
+                                            confirm = input("Confirm deleted (y/n) : ").lower()
+                                            match confirm:
+                                                case "y":
+                                                    try:
+                                                        del data_re[index]
+                                                        with open(r"data_information/datas/data_register.txt","w",encoding="utf-8") as fin:
+                                                            for i in data_re:
+                                                                fin.writelines("|".join(i)+"\n")
+                                                        print("Data deleted.")
+                                                    except IndexError: print("No data to delete")
+                                                case "n":
+                                                    pass
+                                                case _:
+                                                    print("Invalid input Please try again")
+                                    else: print("No data exam")
+                                case "2":
+                                    confirm = input("Confirm delete (y/n) : ").lower()
+                                    match confirm:
+                                        case "y":
+                                            try:
+                                                del datas[index]
+                                                with open(r"data_information/datas/data_student.txt","w",encoding="utf-8") as fin:
+                                                    for i in datas:
+                                                        fin.writelines("|".join(i)+"\n")
+                                                print("Data deleted.")
+                                                student_menu()
+                                            except IndexError: print("No data to delete")
+                                        case "n":
+                                            pass
+                                        case _:
+                                            print("Invalid input Please try again")
+                        case "3":
+                            student_menu()
+                        case _:
+                            print("Invalid input Please try again")            
+                else:
+                    mess = "No sutdent data"
+        else: 
+            print("No data")
+            break
 
 def data_student():
     data = []
@@ -498,63 +542,76 @@ def search_title(id,univ = "มหาวิทยาลัยเทคโนโ�
             exam.extend(uni_list)
             exam.extend(titles)
             exam.append("300")
-            print(id)
-            choice = input(f"1. Register for exam\n2. Back to main\nselect : ")
-            match choice:
-                case "1":
-                    datas = data_student()
-                    data_re = data_register()
+            
+            texts = {}
+            title = ["Tcas","Student id","Time","University","Faculty","Program","Category of Program","Campus","Expenses"]
+            sub_title = [pad_text(i,68) for i in exam]
+            head2 = f"|{'Couse_Information':^98}|"
+            line2 = "-" * len(head2)
+            text = f"\n{line2}\n{head2}\n{line2}\n"
+            for index, title in enumerate(title):
+                text += f"| {title:25} | {sub_title[index]:68} |\n"
+            text += line2
 
-                    iden_code = input("Enter Identification code :")
-                    for i in data_re:
-                        if i in data_re[0]:
-                            print("The data is already in the system. Please verify the data for accuracy.")
-                            break
-                        else:
-                            for index ,data in enumerate(datas):
-                                if iden_code in data and len(data) <= 4 and iden_code not in [i[0] for i in data_re]:
-                                    with open(r"data_information/datas/data_register.txt","a",encoding="utf-8") as fin:
-                                        data.extend(exam)
+            while True:
+                print(text)
+                choice = input(f"1. Register for exam\n2. Back to main\nselect : ")
+                match choice:
+                    case "1":
+                        datas = data_student()
+                        data_re = data_register()
 
-                                        header = f"{"REPORT ID CARD":^90}"
-                                        line = "="*(len(header))
-                                        print(f"{line}\n{header}\n{line}")
-                                        detail = f"| {pad_text("TCAS", 15)} | {pad_text(data[4], 68)} |\n"
-                                        detail += f"| {pad_text("ID", 15)} | {pad_text(data[0], 68)} |\n"
-                                        detail += f"| {pad_text("NAME", 15)} | {pad_text(data[1], 68)} |\n"
-                                        detail += f"| {pad_text("UNIVERSITY", 15)} | {pad_text(data[7], 68)} |\n"
-                                        detail += f"| {pad_text("FACULTY", 15)} | {pad_text(data[8], 68)} |\n"
-                                        detail += f"| {pad_text("DEPARTMENT", 15)} | {pad_text(data[9], 68)} |\n"
-                                        detail += f"| {pad_text("CAMPUS", 15)} | {pad_text(data[10], 68)} |\n"
-                                        detail += f"| {pad_text("DATE", 15)} | {pad_text(data[6], 68)} |\n"
-                                        print(f"{detail}{line}")
-                                        
-                                        confirm = input("Confirm Information (y/n) : ").lower()
-                                        match confirm:
-                                            case "y":
-                                                fin.writelines("|".join(data)+"\n")
-                                            case "n":
-                                                pass
-                                            case _:
-                                                print("Invalid input Please try again")
+                        iden_code = input("Enter Identification code : ")
+                        for i in data_re:
+                            if i in data_re[0]:
+                                print("The data is already in the system. Please verify the data for accuracy.")
+                                break
+                            else:
+                                for index ,data in enumerate(datas):
+                                    if iden_code in data and len(data) <= 4 and iden_code not in [i[0] for i in data_re]:
+                                        mess = ""
+                                        with open(r"data_information/datas/data_register.txt","a",encoding="utf-8") as fin:
+                                            data.extend(exam)
 
-                                        # # datas[index].extend(exam)
-                                        # for i in data:
-                                        #     fin.writelines("|".join(i)+"\n")
-                                    print("Data saved.")
-                                    break
-                                elif iden_code in [i[0] for i in data_re]:
-                                    mess = "The Data is already in the system. You cannot add it again"
-                                else:
-                                    mess = "No student data"
-                            if mess != "": print(mess)
-                            break
-                    break
-                case "2":
-                    break
-                case _:
-                    print("Invalid input Please try again")
-                    id = id[:8]
+                                            header = f"|{"REPORT REGISTRATION FORM":^88}|"
+                                            line = "="*(len(header))
+                                            print(f"{line}\n{header}\n{line}")
+                                            detail = f"| {pad_text("TCAS", 15)} | {pad_text(data[4], 68)} |\n"
+                                            detail += f"| {pad_text("ID", 15)} | {pad_text(data[0], 68)} |\n"
+                                            detail += f"| {pad_text("NAME", 15)} | {pad_text(data[1], 68)} |\n"
+                                            detail += f"| {pad_text("UNIVERSITY", 15)} | {pad_text(data[7], 68)} |\n"
+                                            detail += f"| {pad_text("FACULTY", 15)} | {pad_text(data[8], 68)} |\n"
+                                            detail += f"| {pad_text("DEPARTMENT", 15)} | {pad_text(data[9], 68)} |\n"
+                                            detail += f"| {pad_text("CAMPUS", 15)} | {pad_text(data[10], 68)} |\n"
+                                            detail += f"| {pad_text("DATE", 15)} | {pad_text(data[6], 68)} |\n"
+                                            print(f"{detail}{line}")
+                                            
+                                            confirm = input("Confirm Information (y/n) : ").lower()
+                                            match confirm:
+                                                case "y":
+                                                    fin.writelines("|".join(data)+"\n")
+                                                case "n":
+                                                    pass
+                                                case _:
+                                                    print("Invalid input Please try again")
+
+                                            # # datas[index].extend(exam)
+                                            # for i in data:
+                                            #     fin.writelines("|".join(i)+"\n")
+                                        print("Data saved.")
+                                        student_menu()
+                                    elif iden_code in [i[0] for i in data_re]:
+                                        mess = ("The Data is already in the system. You cannot add it again")
+                                        break
+                                    else:
+                                        mess = ("No student data")
+                                    
+                        if mess != "": print(mess)
+                    case "2":
+                        student_menu()
+                    case _:
+                        print("Invalid input Please try again")
+                        id = id[:8] 
 
         else: print("Invalid input Please try again")
 

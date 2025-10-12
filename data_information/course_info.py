@@ -225,14 +225,28 @@ def all_course_info():
     line = "-" * len(head)
     # title = ["สถานบัน","คณะ","หลักสูตร","ชื่อหลักสูตรภาษาอังกฤษ","ประเภทหลักสูตร","วิทยาเขต","ค่าใช้จ่ายต่อภาคเรียน"]
     title = ["University","Faculty","Program","Category of Program","Campus","Expenses"]
-    result += (f"{line}\n{head}\n{line}\n")
-    for course in datas:
-        for i in range(len(title)):
-            col_data = pad_text(course[i], 90 - 29)  # ลบ len tile กับช่องว่างก่อน col_data
-            result += (f"| {title[i]:25}| {col_data} |\n")
-        result += line + "\n"
+    result += (f"{line}\n{head}\n{line}")
     print(result)
+
+    n = 0
+    for course in datas:
+        n += 1
+        if n == 1: print(f"|{f" Course {n} ":^90}|\n{line}")
+        else: print(f"\n{line}\n|{f" Course {n} ":^90}|\n{line}")
+        for i in range(len(title)):
+            # result += f"คอร์สที่ {n} {course[i]}\n"
+            col_data = pad_text(course[i], 90 - 29)  # ลบ len tile กับช่องว่างก่อน col_data
+            print(f"| {title[i]:25}| {col_data} |")
+            # result += (f"| {title[i]:25}| {col_data} |\n")
+        print(line)
+        # result += line + f"{n}\n"
     print()
+
+def setting_course_info():
+    univ, id1 = search_university()
+    fac, id2 = search_faculty(id1,univ)
+    program, id3 = search_program(id2,univ,fac)
+    search_title(id3,univ,fac,program)
 
 def search_university():
     while True:
@@ -243,6 +257,7 @@ def search_university():
         head = f"|{'Search Course Information':^98}|"
         line = "-" * len(head)
         result += f"{line}\n{head}\n{line}\n"
+        check_id = []
         # ค้นหาข้อมูลผ่าน data dic ต้องใช้ items ช่วย ที่ใช้คือ value
         for key,university in data.items():
             n = 0
@@ -255,14 +270,20 @@ def search_university():
                 search_univ[f"{n:0>2}"] = key_univ
                 # สร้าง key id และ value ชื่อ
                 result += (f"| {n:0>2} | {col_key_univ} |\n")
+                check_id.append(f"{n:0>2}")
             result += (f"| {0:0>2} | {"Back to Search Course Information":{len(head)-9}} |\n")
             result += line
         print(result)
         choice = input("selcet : ")
-        if choice in search_univ and choice != "00": return(search_univ[choice])
-        elif choice == "00": break
+        id = ""
+        id += choice if choice != "00" and choice in check_id else ""
+        if choice in search_univ and choice != "00": return(search_univ[choice]) ,id 
+        elif choice == "00": report_course_info()
+        else: print("Invalid input Please try again")
 
-def search_faculty(univ):
+
+
+def search_faculty(id,univ):
     while True:
         print()
         data = data_dic_info()
@@ -270,24 +291,31 @@ def search_faculty(univ):
         head = f"|{'Faculty':^98}|"
         line = "-" * len(head)
         result += f"{line}\n{head}\n{line}\n"
+        check_id = []
         for key,university in data.items():
             n = 0
             search_fac = {}
+            col_univ = pad_text(univ,68)
+            result += (f"| {"University":25} | {col_univ} |\n{line}\n")
+
             for key_fac, faculty in university[univ].items():
                 n += 1
                 col_key_fac = pad_text(key_fac,len(head)-9)
                 search_fac[f"{n:0>2}"] = key_fac
                 # สร้าง key ตาม number format n_f จะเป็น key automatic
                 result += (f"| {n:0>2} | {col_key_fac} |\n")
+                check_id.append(f"{n:0>2}")
+            result += (f"| {0:0>2} | {"Back to Search Course Information":{len(head)-9}} |\n")
             result += line
-
         print(result)        
         choice = input("selcet : ")
-        if choice in search_fac and choice != "00": return(search_fac[choice])
-        elif choice == "00": search_university() 
+        id += choice if choice != "00" and choice in check_id else ""
+        if choice in search_fac and choice != "00": return(search_fac[choice]) ,id
+        elif choice == "00": search_university()
+        else: print("Invalid input Please try again")
         print()
 
-def search_program(univ,fac):
+def search_program(id,univ,fac):
     while True:
         print()
         data = data_dic_info()
@@ -295,6 +323,7 @@ def search_program(univ,fac):
         head = f"|{'Couse_Name':^98}|"
         line = "-" * len(head)
         result += f"{line}\n{head}\n{line}\n"
+        check_id = []
         for key,university in data.items():
             n = 0
             col_univ = pad_text(univ,68)
@@ -310,22 +339,168 @@ def search_program(univ,fac):
                 search_program[f"{n:0>2}"] = key_program
                 # สร้าง key ตาม number format n_f จะเป็น key automatic
                 result += (f"| {n:0>2} | {col_key_program} |\n")
+                check_id.append(f"{n:0>2}")
             result += (f"| {0:0>2} | {"Back to Search Course Information":{len(head)-9}} |\n")
             result += line
         print(result)        
         choice = input("selcet : ")
-        if choice in search_program and choice != "00": return(search_program[choice])
-        elif choice == "00": search_faculty(univ)
+        id += choice if choice != "00" and choice in check_id else ""
+        if choice in search_program and choice != "00": return(search_program[choice]) , id
+        elif choice == "00": search_faculty(id,univ)
+        else: print("Invalid input Please try again")
+
         print()
     
-def search_title(univ = "มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ",fac = "คณะเทคโนโลยีและการจัดการอุตสาหกรรม",program = "วท.บ.เทคโนโลยีสารสนเทศ (ภาษาไทย ปกติ) วิทยาเขต ปราจีนบุรี"):
+# def search_title(id,univ = "มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ",fac = "คณะเทคโนโลยีและการจัดการอุตสาหกรรม",program = "วท.บ.เทคโนโลยีสารสนเทศ (ภาษาไทย ปกติ) วิทยาเขต ปราจีนบุรี"):
+#     while True:
+#         print()
+#         data = data_dic_info()
+#         result = ""
+#         head = f"|{'Couse_Information':^98}|"
+#         line = "-" * len(head)
+#         result += f"{line}\n{head}\n{line}\n"
+#         check_id = []  
+#         exam = []
+#         time = (datetime.datetime.now().strftime("%d/%m/%Y %H:%M"))
+#         uni_list = []
+#         mess = ""
+#         for key,university in data.items():
+#             n = 0
+#             # university = course[0]
+#             # faculty = course[1]
+#             # program = course[2]
+
+#             col_univ = pad_text(univ,68)
+#             col_fac = pad_text(fac,68)
+#             col_program = pad_text(program,68)
+
+#             result += (f"| {"University":25} | {col_univ} |\n")
+#             result += (f"| {"Faculty":25} | {col_fac} |\n")
+#             result += (f"| {"Program":25} | {col_program} |\n")
+#             uni_list.extend((univ,fac,program))
+#             # search_title = {}
+#             titles = []
+#             for key_title, title in university[univ][fac][program].items():
+#                 # n += 1
+#                 # col_key_c_type = pad_text(title,len(head)-9)
+#                 # search_title[f"{n:0>2}"] = key_title
+#                 # สร้าง key ตาม number format n_f จะเป็น key automatic
+#                 # result += (f"| {n:0>2} | {key_title} | {title} |\n")
+#                 col_title = pad_text(title,68)
+#                 result += (f"| {key_title:25} | {col_title} |\n")
+#                 titles.append(title)
+
+#             tcass = {"01":"TCAS1 Portfolio","02":"TCAS2 Quota","03":"TCAS3 Admission","04":"TCAS4 Direct Admission"}
+#             result += f"{line}\n|{'Round TCAS':^98}|\n{line}\n"
+#             for key, n_tcas in tcass.items():
+#                 result += (f"| {key:0>2} | {n_tcas:{len(head)-9}} |\n")
+#                 check_id.append(key)
+#             result += (f"| {0:0>2} | {"Back to Search Course Information":{len(head)-9}} |\n")
+
+#         print(result+line)   
+
+#         choice = input("Enter Round Tcas : ")
+#         if choice == "00": search_program(id,univ,fac)
+#         elif choice in tcass and choice != "00":
+#             tcas = tcass[choice] ## 
+#             id += choice if choice != "00" and choice in check_id else ""
+#             main_id = 1
+#             with open(r"data_information/datas/data_register.txt","r",encoding="utf-8") as fin :
+#                 for i in fin:
+#                     i = i.strip("\n").split("|")
+#                     if i[5][:8] == id:
+#                         main_id += 1
+#             id += format(main_id,"0>4")
+#             exam.append(tcas)
+#             exam.append(id)
+#             exam.append(time)
+#             exam.extend(uni_list)
+#             exam.extend(titles)
+#             exam.append("300")
+            
+#             texts = {}
+#             title = ["Tcas","Student id","Time","University","Faculty","Program","Category of Program","Campus","Expenses"]
+#             sub_title = [pad_text(i,68) for i in exam]
+#             head2 = f"|{'Couse_Information':^98}|"
+#             line2 = "-" * len(head2)
+#             text = f"\n{line2}\n{head2}\n{line2}\n"
+#             for index, title in enumerate(title):
+#                 text += f"| {title:25} | {sub_title[index]:68} |\n"
+#             text += line2
+
+#             while True:
+#                 print(text)
+#                 choice = input(f"1. Register for exam\n2. Back to main\nselect : ")
+#                 match choice:
+#                     case "1":
+#                         datas = data_student()
+#                         data_re = data_register()
+
+#                         iden_code = input("Enter Identification code : ")
+#                         for i in data_re:
+#                             if i in data_re[0]:
+#                                 print("The data is already in the system. Please verify the data for accuracy.")
+#                                 break
+#                             else:
+#                                 for index ,data in enumerate(datas):
+#                                     if iden_code in data and len(data) <= 4 and iden_code not in [i[0] for i in data_re]:
+#                                         mess = ""
+#                                         with open(r"data_information/datas/data_register.txt","a",encoding="utf-8") as fin:
+#                                             data.extend(exam)
+
+#                                             header = f"|{"REPORT REGISTRATION FORM":^88}|"
+#                                             line = "="*(len(header))
+#                                             print(f"{line}\n{header}\n{line}")
+#                                             detail = f"| {pad_text("TCAS", 15)} | {pad_text(data[4], 68)} |\n"
+#                                             detail += f"| {pad_text("ID", 15)} | {pad_text(data[0], 68)} |\n"
+#                                             detail += f"| {pad_text("NAME", 15)} | {pad_text(data[1], 68)} |\n"
+#                                             detail += f"| {pad_text("UNIVERSITY", 15)} | {pad_text(data[7], 68)} |\n"
+#                                             detail += f"| {pad_text("FACULTY", 15)} | {pad_text(data[8], 68)} |\n"
+#                                             detail += f"| {pad_text("DEPARTMENT", 15)} | {pad_text(data[9], 68)} |\n"
+#                                             detail += f"| {pad_text("CAMPUS", 15)} | {pad_text(data[10], 68)} |\n"
+#                                             detail += f"| {pad_text("DATE", 15)} | {pad_text(data[6], 68)} |\n"
+#                                             print(f"{detail}{line}")
+                                            
+#                                             confirm = input("Confirm Information (y/n) : ").lower()
+#                                             match confirm:
+#                                                 case "y":
+#                                                     fin.writelines("|".join(data)+"\n")
+#                                                 case "n":
+#                                                     pass
+#                                                 case _:
+#                                                     print("Invalid input Please try again")
+
+#                                             # # datas[index].extend(exam)
+#                                             # for i in data:
+#                                             #     fin.writelines("|".join(i)+"\n")
+#                                         print("Data saved.")
+#                                         student_menu()
+#                                     elif iden_code in [i[0] for i in data_re]:
+#                                         mess = ("The Data is already in the system. You cannot add it again")
+#                                         break
+#                                     else:
+#                                         mess = ("No student data")
+                                    
+#                         if mess != "": print(mess)
+#                     case "2":
+#                         student_menu()
+#                     case _:
+#                         print("Invalid input Please try again")
+#                         id = id[:8] 
+
+#         else: print("Invalid input Please try again")
+
+    
+def search_title(id,univ = "มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ",fac = "คณะเทคโนโลยีและการจัดการอุตสาหกรรม",program = "วท.บ.เทคโนโลยีสารสนเทศ (ภาษาไทย ปกติ) วิทยาเขต ปราจีนบุรี"):
     print()
     data = data_dic_info()
     result = ""
     head = f"|{'Couse_Information':^98}|"
     line = "-" * len(head)
     result += f"{line}\n{head}\n{line}\n"
+
     for key,university in data.items():
+
         n = 0
         # university = course[0]
         # faculty = course[1]
@@ -364,14 +539,6 @@ def search_title(univ = "มหาวิทยาลัยเทคโนโล�
     # if choice in search_title: return(search_title[choice])
 
 # test
-def setting_course_info():
-    univ = search_university()
-    if univ is None:
-        print("Invalid university selection.")
-        return None
-    fac = search_faculty(univ)
-    program = search_program(univ,fac)
-    search_title(univ,fac,program)
 
 
 def main():

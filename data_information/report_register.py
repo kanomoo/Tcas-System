@@ -1,6 +1,6 @@
 #เจิม
 from wcwidth import wcswidth
-
+import datetime
 def pad_text(text, width = 0): # padding text เติมช่องว่าง ควรใช้เฉพาะภาษาไทย
     text = str(text)
     real_width = wcswidth(text)                         # คำนวณความกว้างจริงของข้อความในเทอมินอล (นับช่องว่างที่ข้อความใช้)
@@ -107,12 +107,13 @@ def report_course(): #ข้อ F
             department = key[2]
             count = value
             total_people += count
-            print(f"| {pad_text(university, 35)} | {pad_text(department, 30)} | {pad_text(tcas, 15)} | {pad_text(f'{count} คน', 20)} |")
+            print(f"| {pad_text(university, 35)} | {pad_text(department, 30)} | {pad_text(tcas, 15)} | {pad_text(f"{count} คน", 20)} |")
         print(line)
-        print(f"| {pad_text("จำนวนทั้งหมด", 86)} | {pad_text(f'{total_people} คน', 20)} |")
+        print(f"| {pad_text("จำนวนทั้งหมด", 86)} | {pad_text(f"{total_people} คน", 20)} |")
         print(line)
 
 def report_paymentAll(): #ข้อ G
+    time = (datetime.datetime.now().strftime("%d/%m/%Y"))
     with open(file_register,"r",encoding="UTF-8") as FileIn :
         report_count = {} #ผมสร้างเอาไว้เก็บค่า
         for Data in FileIn:
@@ -126,13 +127,14 @@ def report_paymentAll(): #ข้อ G
                 report_count[primary] += 1
             else:
                 report_count[primary] = 1
-        header = f"|{"REPORT COURSE TOTAL":^119}|"
+        header = f"|{"REPORT COURSE TOTAL":^130}|"
         line = "="*(len(header))
         print(f"{line}\n{header}\n{line}")
-        print(f"| {pad_text("UNIVERSITY - มหาวิทยาลัย", 35)} | {pad_text("COURSE - หลักสูตร", 20)} | {pad_text("TCAS - รอบสมัคร", 15)} | {pad_text("NUMBER - จำนวน", 15)} | {pad_text("MONEY - จำนวนเงิน", 20)} |")
-        print(line)
+        print(f"| {pad_text("TCAS - รอบสมัคร", 25)} | {pad_text("UNIVERSITY - มหาวิทยาลัย", 35)} | {pad_text("COURSE - หลักสูตร", 20)} | {pad_text("NUMBER - จำนวน", 16)} | {pad_text("MONEY - จำนวนเงิน", 20)} |")
+        # print(line)
         total_people = 0
         total_expenses = 0
+        n_tcas = None
         for key, value in sorted(report_count.items()):
             tcas = key[0]
             university = key[1]
@@ -142,11 +144,19 @@ def report_paymentAll(): #ข้อ G
             total_people += count
             total_exp_people = int(expenses)*count
             total_expenses += total_exp_people
-            print(f"| {pad_text(university, 35)} | {pad_text(department, 20)} | {pad_text(tcas, 15)} | {pad_text(f'{count} คน', 15)} | {pad_text(f'{total_exp_people:>16,.2f} บาท')} |")
+            if tcas != n_tcas:
+                tcas_display = tcas
+                n_tcas = tcas
+                print(line)
+            else:
+                tcas_display = ""
+            print(f"| {pad_text(tcas_display, 25)} | {pad_text(university, 35)} | {pad_text(department, 20)} | {pad_text(f"{count} คน", 16)} | {pad_text(f"{total_exp_people:>16,.2f} บาท")} |")
         print(line)
-        print(f"| {pad_text("จำนวนคนสมัครทั้งหมด - TOTAL NUMBER OF REGISTER", 94)} | {pad_text(f'{total_people:>17} คน')} |")
+        print(f"| {pad_text("จำนวนคนสมัครทั้งหมด - TOTAL NUMBER OF REGISTER", 105)} | {pad_text(f"{total_people:>17} คน")} |")
         print(line)
-        print(f"| {pad_text("ยอดเงินทั้งหมด - TOTAL AMOUNT", 94)} | {pad_text(f'{total_expenses:>16,.2f} บาท')} |")
+        print(f"| {pad_text("ยอดเงินทั้งหมด - TOTAL AMOUNT", 105)} | {pad_text(f"{total_expenses:>16,.2f} บาท")} |")
+        print(line)
+        print(f"| {pad_text("", 105)} | {pad_text(f"{"ข้อมูลวันที่":<14} {time}")} |")
         print(line)
 
 #report_idcard()

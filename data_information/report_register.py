@@ -167,3 +167,108 @@ def report_paymentAll(): #ข้อ G
 # report_exp_id_card()
 report_course()
 # report_paymentAll()
+
+#----------------------------------------------------------------------------------------------------------------------------------
+# วิสา G
+
+# file_register = r"data_information/datas/data_register.txt" #อ่านของเจิม  #ขอคอมเม้นไว้ เพราะเจิมเรียกมาแล้ว
+
+def read_register(filename):
+    
+    file = open(filename, 'r' , encoding='utf-8') 
+    lines = file.readlines()
+    file.close()
+
+    data = []
+    for line in lines:
+        Table = line.strip().split('|') #ลบช่องว่าง \n แล้วแยกข้อมูลด้วย |
+        data.append(Table) #เก็บข้อมูลแต่ละบรรทัดลงใน list
+    return data #ส่งข้อมูลออกไปใช้งาน
+
+def display_report(data): #พารามิเตอร์ จากการส่งค่าข้อมูลที่อ่านมา
+    print("\n")
+    Top = (f'{pad_text("TCAS Applicant and Fee Statistics Report".center(151))}\n') # ไปนับมาจาก col_width มาใส่
+    Top += (f'{pad_text("รายงานสถิติจำนวนผู้สมัครและค่าสมัคร TCAS 69".center(158))}')
+    print(Top)
+
+    #กำหนดหัวตาราง
+    headers = ["|Admission", "University", "Faculty", "Program","Type", "Units(คน)", "Total Price(บาท)|"]
+  
+    col_widths = [18, 39, 28, 25, 18, 12, 16] 
+
+    table_width = sum(col_widths) # รวมค่าความกว้างทั้งหมดจาก list col_widths ที่กำหนดด้านบน
+
+    print("-" * table_width)
+
+    #สร้างหัวตารางด้วย for loop
+    for i in range(len(headers)): # h คือชื่อหัวคอลัมน์ เช่น "Admission"
+        h = headers[i]
+        print(pad_text(h,col_widths[i]), end="") # col_widths[i] คือ i จะวนไปหาความกว้างที่กำหนดใน list
+        #จัดข้อความ h  ภายในความกว้างกำหนดใน col_widths[]
+        # end = "" ไม่ขึ้นบรรทัดใหม่ทันที แต่พิพพ์ต่อกันเป็นแถวเดียว
+    print() #ขึ้นบรรทัดใหม่ หลังจากพิมพ์หัวตารางครบทุกคอลัมน์
+
+    Total_applicants = 0 #ใช้เก็บข้อมูลจำนวนผู้สมัครทั้งหมด 
+    Total_fee = 0 # ยอดเงินรวมทัังหมด
+ 
+    
+    rounds = {}
+    for row in data: # data คือ รายการข้อมูลที่อ่านมาจาก ระบบลงทะเบียนของเจิม
+        round_name = "|" + row[4].split()[0] +" " +row[4].split()[1]#หยิบเอาคำแค่ TCAS หรือรอบการสมัครนั้นๆ มา เว้นช่องด้วย ""
+    
+        if round_name not in rounds: #ตรวจสอบว่าใน rounds ยังไม่มีคีย์ชื่อ round_name หรือไม่
+            rounds[round_name] = [] # ถ้าไม่มี ให้สร้างคีย์นั้น พร้อมกำหนดเป็นค่า list ว่าง
+        rounds[round_name].append(row)
+
+        #for loop วนแสดงผลรายงานทีละรอบ TCAS 
+        round_names = sorted(rounds) #เปลี่ยนจาก litsที่ตอนแรกเราใส่ เป็น sorted เท่านี้ก็จบแล้ว
+
+    for round_name in round_names:
+        print("-" * table_width)
+
+        for count in range(len(rounds[round_name])):
+            row = rounds[round_name][count]
+            if count == 0 :
+                Admission = round_name  # ถ้าเป็นบรรทัดแรกของรอบ ให้ใส่ชื่อรอบ TCAS นั้นๆ
+            else:
+                Admission = "|" # ถ้าไม่มี ให้เป็น |
+            
+            University = row[7]             #ชื่อมหาลัย
+            Faculty = row[8]                #ชื่อคณะ
+            Program = row[9]                #ชื่อสาขา
+            Prog_type = row[10]             #ชื่อประเภทการเรียน
+            Units = 1                       #จำนวนนักเรียนสมัคร
+            Fee = int(row[13])              #ค่าสมัครสอบ
+
+            Total_applicants += 1           #ยอดสมัคร
+            Total_fee += Fee                #ค่าใช้จ่ายในการสอบทั้งหมดของทุกคน
+
+
+            cols = [Admission , University, Faculty, Program, Prog_type, str(Units), str(Fee)] #lits ใน col ที่เก็บค่าของ index ที่รันมา
+
+
+            for i in range(len(cols)):
+                c = cols[i]
+                print(pad_text(c,col_widths[i]),end="") 
+            print("|")
+
+    print("-" * table_width)
+    print("|",end="")
+    summary_1 = f"{pad_text('ผู้สมัครทั้งหมดจำนวน')} {Total_applicants} คน"
+    summary_2 = f"{pad_text('จำนวนเงินทั้งหมด')} {Total_fee:,.2f} บาท"
+    print(summary_1.rjust(130),end=""+" | ")
+    print(summary_2.rjust(20)+" |") 
+    print("-" * table_width)
+    Time = (datetime.datetime.now().strftime("%d/%m/%Y %H:%M"))
+    print(f'{pad_text("ข้อมูลล่าสุด ณ วันที่ ").rjust(147)}{Time}')
+
+
+# def main(): #เรียกใช้งาน
+#     # file_register = r"data_information/datas/data_register.txt"
+#     data = read_register(file_register) #อ่านไฟล์เจิม
+
+#     display_report(data)
+
+
+# if __name__ == "__main__":
+#     main()

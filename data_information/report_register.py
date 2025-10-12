@@ -81,6 +81,7 @@ def report_exp_id_card(): #ข้อ E
                 print(f"{detail}{line}\n{expenses}{line}")
 
 def report_course(): #ข้อ F
+    time = (datetime.datetime.now().strftime("%d/%m/%Y"))
     with open(file_register,"r",encoding="UTF-8") as FileIn :
         report_count = {} #ผมสร้างเอาไว้เก็บค่า
         for Data in FileIn:
@@ -95,10 +96,10 @@ def report_course(): #ข้อ F
             else:
                 report_count[primary] = 1
         # print(report_count)
-        header = f"{"REPORT COURSE TOTAL":^113}"
+        header = f"{"REPORT COURSE TOTAL":^123}"
         line = "="*(len(header))
         print(f"{line}\n{header}\n{line}")
-        print(f"| {pad_text("UNIVERSITY - มหาวิทยาลัย", 35)} | {pad_text("COURSE - หลักสูตร", 30)} | {pad_text("TCAS - รอบสมัคร", 15)} | {pad_text("NUMBER - จำนวน", 20)} |")
+        print(f"| {pad_text("UNIVERSITY - มหาวิทยาลัย", 35)} | {pad_text("COURSE - หลักสูตร", 30)} | {pad_text("TCAS - รอบสมัคร", 25)} | {pad_text("NUMBER - จำนวน", 20)} |")
         print(line)
         total_people = 0
         for key, value in report_count.items():
@@ -107,9 +108,11 @@ def report_course(): #ข้อ F
             department = key[2]
             count = value
             total_people += count
-            print(f"| {pad_text(university, 35)} | {pad_text(department, 30)} | {pad_text(tcas, 15)} | {pad_text(f"{count} คน", 20)} |")
+            print(f"| {pad_text(university, 35)} | {pad_text(department, 30)} | {pad_text(tcas, 25)} | {pad_text(f"{count} คน", 20)} |")
         print(line)
-        print(f"| {pad_text("จำนวนทั้งหมด", 86)} | {pad_text(f"{total_people} คน", 20)} |")
+        print(f"| {pad_text("จำนวนทั้งหมด", 96)} | {pad_text(f"{total_people} คน", 20)} |")
+        print(line)
+        print(f"| {pad_text("", 96)} | {pad_text(f"{"ข้อมูลวันที่":<14} {time}")} |")
         print(line)
 
 def report_paymentAll(): #ข้อ G
@@ -162,5 +165,5 @@ def report_paymentAll(): #ข้อ G
 #report_idcard()
 # report_idcard_All()
 # report_exp_id_card()
-# report_course()
-report_paymentAll()
+report_course()
+# report_paymentAll()

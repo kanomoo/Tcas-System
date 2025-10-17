@@ -1,12 +1,7 @@
 ### ตรวจสอบการติดตั้ง
 ```bash
-# ตรวจสอบเวอร์ชัน Node.js
-node -v
-npm -v
 
-# ตรวจสอบ Git
-git version
+#ต้องติดตั้งเพื่อใช้งานโปรแกรม
+pip install wcwidth
 
-# ตรวจสอบ VS Code (เสริม)
-code --version
 ```

@@ -162,10 +162,10 @@ def report_paymentAll(): #ข้อ G
         print(f"| {pad_text("", 105)} | {pad_text(f"{"ข้อมูลวันที่":<14} {time}")} |")
         print(line)
 
-#report_idcard()
+# report_idcard()
 # report_idcard_All()
 # report_exp_id_card()
-report_course()
+# report_course()
 # report_paymentAll()
 
 #----------------------------------------------------------------------------------------------------------------------------------
@@ -185,7 +185,8 @@ def read_register(filename):
         data.append(Table) #เก็บข้อมูลแต่ละบรรทัดลงใน list
     return data #ส่งข้อมูลออกไปใช้งาน
 
-def display_report(data): #พารามิเตอร์ จากการส่งค่าข้อมูลที่อ่านมา
+def display_report(data = file_register): #พารามิเตอร์ จากการส่งค่าข้อมูลที่อ่านมา
+    data = read_register(file_register) 
     print("\n")
     Top = (f'{("TCAS Applicant and Fee Statistics Report".center(151))}\n') # ไปนับมาจาก col_width มาใส่
     Top += (f'{("รายงานสถิติจำนวนผู้สมัครและค่าสมัคร TCAS 69".center(158))}')
@@ -284,14 +285,3 @@ def display_report(data): #พารามิเตอร์ จากการ�
     Time = (datetime.datetime.now().strftime("%d/%m/%Y %H:%M"))
     print(f'{("|")+("| ข้อมูลล่าสุด ณ วันที่ ").rjust(145)}{Time} |')
     print(f"{("=" * table_width)}")
-
-
-def main(): #เรียกใช้งาน
-    # file_register = r"data_information/datas/data_register.txt"
-    data = read_register(file_register) #อ่านไฟล์เจิม
-
-    display_report(data)
-
-
-if __name__ == "__main__":
-    main()

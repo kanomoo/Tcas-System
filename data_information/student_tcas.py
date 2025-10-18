@@ -17,7 +17,7 @@ def student_menu():
         print()
         head = f"|{"Student Menu":^30}|"
         line = f"+{"=" * (len(head) - 2)}+"
-        choice = input(f"{line}\n{head}\n{line}\n|{"1. Student Register":30}|\n|{"2. Student Register Exam":30}|\n|{"3. Student data setting":30}|\n|{"4. Report ID Card":30}|\n|{"5. Report all student data":30}|\n|{"6. Go Back":30}|\n{line}\nSelect option : ").strip()
+        choice = input(f"{line}\n{head}\n{line}\n|{"1. Student Register":30}|\n|{"2. Student Register Exam":30}|\n|{"3. Student Data setting":30}|\n|{"4. Report ID Card":30}|\n|{"5. Report All student data":30}|\n|{"6. Go Back":30}|\n{line}\nSelect option : ").strip()
         match choice:
             case "1":
                 student_register()
@@ -134,7 +134,7 @@ def sudent_data_setting():
                     choice = input(f"\n{"-" * 22}\n|{"1. Edit":20}|\n|{"2. Delete":20}|\n|{"3. Go Back":20}|\n{"-" * 22}\nselect : ").strip()
                     match choice:
                         case "1":
-                            e_data = input("Enter the field name to edit (identity code) : ").strip()
+                            e_data = input("Enter the field name to edit (field : phone) : ").strip()
                             if e_data in data_students and e_data in ["identity code","name","email","phone"]:
                                 print(f"{e_data} : {data_students[e_data]}")
                                 n_data = input("Enter new data : ").strip()

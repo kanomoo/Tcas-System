@@ -18,7 +18,7 @@ def data_course_info(): # เก็บข้อมูลจากไฟล์
             data.append(i.strip("\n").split("|"))
     return(sorted(data))
 
-def data_dic_info(): # test chat 
+def data_dic_info():
     data = data_course_info()
     data_dic = {"university": {}}
     for course in data:

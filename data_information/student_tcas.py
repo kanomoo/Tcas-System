@@ -323,15 +323,6 @@ def data_register():
             data.append(i.strip("\n").split("|"))
     return data
 
-# def student_register_exam():
-#     try:
-#         univ, id1 = search_university()
-#         fac, id2 = search_faculty(id1,univ)
-#         program, id3 = search_program(id2,univ,fac)
-#         search_title(id3,univ,fac,program)
-#     except: pass
-#     return
-
 def search_university():
     while True:
         # ใช้ data ที่ เป็น dic

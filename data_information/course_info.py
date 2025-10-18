@@ -63,14 +63,6 @@ def course_info(): # menu input course_info
             case _:
                 pass
         
-        
-# def add_course_info():
-#     univ, n_data1 = add_university()
-#     fac, n_data2 = add_faculty(n_data1,univ)
-#     program, n_data3 = add_program(n_data2,univ,fac)
-#     add_title(n_data3,univ,fac,program)
-#     print()
-
 def setting_university():
     state = 0
     data = data_dic_info()

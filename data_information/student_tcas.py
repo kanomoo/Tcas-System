@@ -1,7 +1,7 @@
 from wcwidth import wcswidth
 import datetime
 from .course_info import data_dic_info
-from .report_register import report_idcard_All
+from .report_register import *
 
 def pad_text(text, width = 0): # padding text เติมช่องว่าง ควรใช้เฉพาะภาษาไทย
     text = str(text)
@@ -17,7 +17,7 @@ def student_menu():
         print()
         head = f"|{"Student Menu":^30}|"
         line = f"+{"=" * (len(head) - 2)}+"
-        choice = input(f"{line}\n{head}\n{line}\n|{"1. Student Register":30}|\n|{"2. Student Register Exam":30}|\n|{"3. Student data setting":30}|\n|{"4. Report all student data":30}|\n|{"5. Go Back":30}|\n{line}\nSelect option : ").strip()
+        choice = input(f"{line}\n{head}\n{line}\n|{"1. Student Register":30}|\n|{"2. Student Register Exam":30}|\n|{"3. Student data setting":30}|\n|{"4. Report ID Card":30}|\n|{"5. Report all student data":30}|\n|{"6. Go Back":30}|\n{line}\nSelect option : ").strip()
         match choice:
             case "1":
                 student_register()
@@ -26,9 +26,11 @@ def student_menu():
             case "3":
                 sudent_data_setting()
             case "4":
+                report_exp_id_card()
+            case "5":
                 print()
                 report_idcard_All()
-            case "5":
+            case "6":
                 return True
             case _:
                 print("Invalid input Please try again")

@@ -1,6 +1,7 @@
 from data_information.course_info import *
 from data_information.student_tcas import *
 from data_information.report_register import *
+
 def main(): # report main menu
     while True:
         print()
@@ -13,7 +14,7 @@ def main(): # report main menu
             case "2":
                 course_info()
             case "3":
-                display_report()
+                display_report() 
             case "4":
                 exit()
 

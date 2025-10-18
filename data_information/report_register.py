@@ -13,7 +13,7 @@ def pad_text(text, width = 0): # padding text เติมช่องว่า�
 file_register = r"data_information/datas/data_register.txt"
 
 def report_idcard(): #ข้อ D แบบรายบุคคล
-    id_card = input("Enter Identification Code : ").strip() #รับค่าใช้ ID นักเรียนเด้อ
+    id_card = input("\nEnter Identification Code : ").strip() #รับค่าใช้ ID นักเรียนเด้อ
     with open(file_register,"r",encoding="UTF-8") as FileIn :
         for Data in FileIn:
             Data = Data.strip().split("|")
@@ -39,8 +39,11 @@ def report_idcard(): #ข้อ D แบบรายบุคคล
                 # detail += f"| {"DATE":<15} | {Data[6]:<68} |\n"
                 # detail += f"| {"EXPENSES":<15} | {Data[13]:<68} |\n"
                 print(f"{detail}{line}")
+                break
+        else: print("Data not found")
 
 def report_idcard_All(): #ข้อ D แบบทั้งหมด
+    print()
     with open(file_register,"r",encoding="UTF-8") as FileIn :
         num = 1
         for Data in FileIn:
@@ -59,9 +62,10 @@ def report_idcard_All(): #ข้อ D แบบทั้งหมด
             expenses = f"| {pad_text("EXPENSES", 15)} | {pad_text(Data[13], 71)} |\n"
             print(f"{detail}{line}\n{expenses}{line}")
             num += 1
+        
 
 def report_exp_id_card(): #ข้อ E
-    id_card = input("Enter Identification Code : ").strip() #รับค่าใช้ ID นักเรียนเด้อ
+    id_card = input("\nEnter Identification Code : ").strip() #รับค่าใช้ ID นักเรียนเด้อ
     with open(file_register,"r",encoding="UTF-8") as FileIn :
         for Data in FileIn:
             Data = Data.strip().split("|")
@@ -79,6 +83,8 @@ def report_exp_id_card(): #ข้อ E
                 detail += f"| {pad_text("DATE", 15)} | {pad_text(Data[6], 68)} |\n"
                 expenses = f"| {pad_text("EXPENSES", 15)} | {pad_text(Data[13], 68)} |\n"
                 print(f"{detail}{line}\n{expenses}{line}")
+                break
+        else: print("Data not found")
 
 def report_course(): #ข้อ F
     time = (datetime.datetime.now().strftime("%d/%m/%Y"))
@@ -114,6 +120,7 @@ def report_course(): #ข้อ F
         print(line)
         print(f"| {pad_text("", 96)} | {pad_text(f"{"ข้อมูลวันที่":<14} {time}")} |")
         print(line)
+
 
 def report_paymentAll(): #ข้อ G
     time = (datetime.datetime.now().strftime("%d/%m/%Y"))

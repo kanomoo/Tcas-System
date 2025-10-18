@@ -1,4 +1,5 @@
 from wcwidth import wcswidth
+from .report_register import *
 # คำนวณความกว้างของการแสดงผล
 
 def pad_text(text, width = 0): # padding text เติมช่องว่าง ควรใช้เฉพาะภาษาไทย
@@ -47,17 +48,19 @@ def data_dic_info(): # test chat
 def course_info(): # menu input course_info
     while True:
         print()
-        head = f"|{"Course information":^30}|"
+        head = f"|{"Course information":^40}|"
         line = f"+{"-" * (len(head) - 2)}+"
-        choice = input(f"{line}\n{head}\n{line}\n|{"1. Setting Course Information":{len(head)-2}}|\n|{"2. Report Course Information":{len(head)-2}}|\n|{"3. Go Back":{len(head)-2}}|\n{line}\nSelect option : ").strip()
+        choice = input(f"{line}\n{head}\n{line}\n|{"1. Setting Course Information":{len(head)-2}}|\n|{"2. Report All Course Information":{len(head)-2}}|\n|{"3. Report Course Total":{len(head)-2}}|\n|{"4. Go Back":{len(head)-2}}|\n{line}\nSelect option : ").strip()
         match choice:
             case "1":
                 setting_university()
-            case "2": 
+            case "2":
                 all_course_info()
-            case "3":
+            case "3": 
+                report_course()
+            case "4":
                 break
-            case "_":
+            case _:
                 pass
         
         

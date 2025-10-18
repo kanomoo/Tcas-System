@@ -426,7 +426,7 @@ def search_program(id,univ,fac):
         print()
 
     
-def search_title(id,univ = "มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ",fac = "คณะเทคโนโลยีและการจัดการอุตสาหกรรม",program = "วท.บ.เทคโนโลยีสารสนเทศ (ภาษาไทย ปกติ) วิทยาเขต ปราจีนบุรี"):
+def search_title(id, univ ,fac ,program):
     while True:
         print()
         data = data_dic_info()

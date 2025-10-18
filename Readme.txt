@@ -49,12 +49,13 @@
 ----------------------------------------------
 Tcas/
 ├── main.py
+├── README.md
 ├── data_information/
+│   ├── __init__.py
 │   ├── course_info.py
 │   ├── student_tcas.py
 │   ├── report_register.py
-│   └── datas/
-└── README.txt
+│   └── datas/       
 
 ----------------------------------------------
   จัดทำโดย (Developed by)

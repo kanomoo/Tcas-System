@@ -61,7 +61,7 @@ def course_info(): # menu input course_info
             case "4":
                 break
             case _:
-                pass
+                print("Invalid input Please try again")
         
 def setting_university():
     state = 0
@@ -223,7 +223,7 @@ def setting_program(n_data,univ,fac):
             else: print("Invalid input Please try again")
         except KeyError: return True
 
-def setting_title(n_data ,univ = "มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ" ,fac = "คณะเทคโนโลยีและการจัดการอุตสาหกรรม",program = "วท.บ.เทคโนโลยีสารสนเทศ (ภาษาไทย ปกติ) วิทยาเขต ปราจีนบุรี"):
+def setting_title(n_data ,univ ,fac ,program ):
     print()
     state = 0
     while True:

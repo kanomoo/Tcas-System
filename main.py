@@ -2,7 +2,13 @@ from data_information.course_info import *
 from data_information.student_tcas import *
 from data_information.report_register import *
 
-def main(): # report main menu
+
+### Readme ต้องติดตั้งแพ็กเกจที่จำเป็นด้วยคำสั่งนี้ ###
+
+#          pip install wcwidth         
+
+
+def main(): 
     while True:
         print()
         head = f"|{"TCAS System":^50}|"
@@ -17,6 +23,7 @@ def main(): # report main menu
                 display_report() 
             case "4":
                 exit()
-
+            case _:
+                print("Invalid input Please try again")
 if __name__ == "__main__":
     main()

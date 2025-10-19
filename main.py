@@ -1,7 +1,3 @@
-import os
-os.environ['PYTHONUTF8'] = '1'
-import locale
-locale.setlocale(locale.LC_ALL, 'th_TH.UTF-8')
 from data_information.course_info import *
 from data_information.student_tcas import *
 from data_information.report_register import *

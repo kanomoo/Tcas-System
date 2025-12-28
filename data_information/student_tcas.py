@@ -44,7 +44,7 @@ def student_register():
             
             if iden_code not in [data[0] for data in datas]:
                 name = input("Enter Name-Surname : ").strip()
-                email = input("Enter Emaill : ").strip()
+                email = input("Enter Email : ").strip()
                 phone = input("Enter Phone Number : ").strip()
                 head = f"|{'Register':^88}|"
                 line = "-" * len(head)
@@ -134,7 +134,7 @@ def sudent_data_setting():
                     choice = input(f"\n{"-" * 22}\n|{"1. Edit":20}|\n|{"2. Delete":20}|\n|{"3. Go Back":20}|\n{"-" * 22}\nselect : ").strip()
                     match choice:
                         case "1":
-                            e_data = input("Enter the field name to edit (field : phone) : ").strip()
+                            e_data = input("Enter the field name to edit (Name Field) : ").lower.strip()
                             if e_data in data_students and e_data in ["identity code","name","email","phone"]:
                                 print(f"{e_data} : {data_students[e_data]}")
                                 n_data = input("Enter new data : ").strip()
